@@ -19,7 +19,7 @@ Example:
 docker run --rm -p 5050:5050 thajeztah/pgadmin4
 ```
 
-- Access to pgAdmin from the browser http://localhost:5050(The port is that specified with -p flag in docker run command)
+- Access to pgAdmin from the browser http://localhost:5050 (The port is that specified with -p flag in docker run command)
 
 
 - [Optional] You can check your databases via IntellijIDEA
