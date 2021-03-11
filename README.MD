@@ -1,6 +1,6 @@
-#Education system
+# Education system
 
-###Prerequisites
+### Prerequisites
  - download and install [Docker desktop](https://www.docker.com/get-started)
 
 ###Start PostgresSQL via docker desktop
@@ -24,8 +24,9 @@ docker run --rm -p 5050:5050 thajeztah/pgadmin4
 
 - [Optional] You can check your databases via IntellijIDEA
 
-###Create pgAdmin server in UI
-####Steps:
+### Create pgAdmin server in UI
+
+#### Steps:
 
 - Right click on Servers.
 - Create.
