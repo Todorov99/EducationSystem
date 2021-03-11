@@ -3,7 +3,7 @@
 ### Prerequisites
  - download and install [Docker desktop](https://www.docker.com/get-started)
 
-###Start PostgresSQL via docker desktop
+### Start PostgresSQL via docker desktop
 
  - Start postgresSQL server
 
