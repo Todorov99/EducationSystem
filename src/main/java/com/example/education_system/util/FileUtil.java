@@ -8,5 +8,5 @@ import java.util.List;
 
 public interface FileUtil {
 
-   List<Student> readXlsxFile(String filePath) throws IOException;
+   <T> List<T> readXlsxFile(String filePath) throws IOException;
 }

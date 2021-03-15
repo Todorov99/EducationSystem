@@ -1,6 +1,8 @@
 package com.example.education_system.controller;
 
+import com.example.education_system.domain.Log;
 import com.example.education_system.domain.Student;
+import com.example.education_system.service.LogService;
 import com.example.education_system.service.StudentService;
 import com.example.education_system.util.FileUtil;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,25 +13,25 @@ import java.io.IOException;
 import java.util.List;
 
 @RestController
-public class StudentController {
+public class LogController {
 
     private final FileUtil fileUtil;
-    private final StudentService studentService;
+    private final LogService logService;
 
     @Autowired
-    public StudentController(FileUtil fileUtil, StudentService studentService) {
+    public LogController(FileUtil fileUtil, LogService logService) {
         this.fileUtil = fileUtil;
-        this.studentService = studentService;
+        this.logService = logService;
     }
 
     // TODO this will be remove.
     // Just for testing purposes for now.
     // This seeding should be in some of the services
 
-    @GetMapping("/students")
-    public List<Student> showStudents() throws IOException {
-        studentService.seedStudents();
+    @GetMapping("/logs")
+    public List<Log> showLogs() throws IOException {
+        logService.seedLogs();
 
-        return fileUtil.readXlsxFile("./Course A_StudentsResults_Year 1.xlsx");
+        return fileUtil.readXlsxFile("./Logs_Course A_StudentsActivities.xlsx");
     }
 }

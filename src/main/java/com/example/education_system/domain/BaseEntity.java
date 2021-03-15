@@ -1,21 +1,16 @@
 package com.example.education_system.domain;
 
-import javax.persistence.Column;
-import javax.persistence.Id;
-import javax.persistence.MappedSuperclass;
+import javax.persistence.*;
 
 @MappedSuperclass
 public abstract class BaseEntity {
 
     @Id
     @Column(name = "id")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
     public BaseEntity() {
-    }
-
-    public BaseEntity(Integer id) {
-        this.id = id;
     }
 
     public Integer getId() {

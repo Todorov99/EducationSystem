@@ -20,12 +20,10 @@ public class StudentServiceImpl implements StudentService {
 
     private  static final Logger logger = LoggerFactory.getLogger(StudentServiceImpl.class);
 
-    @Autowired
-    private FileUtil fileUtil;
+    private final FileUtil fileUtil;
+    private final StudentRepository studentRepository;
 
     @Autowired
-    private StudentRepository studentRepository;
-
     public StudentServiceImpl(FileUtil fileUtil, StudentRepository studentRepository) {
         this.fileUtil = fileUtil;
         this.studentRepository = studentRepository;
@@ -39,9 +37,9 @@ public class StudentServiceImpl implements StudentService {
         List<Student> studentsYearTwo = fileUtil.readXlsxFile(studentsYearTwoFilePath);
 
         studentsYearOne
-                .forEach(student -> studentRepository.saveAndFlush(student));
+                .forEach(studentRepository::saveAndFlush);
         studentsYearTwo
-                .forEach(student -> studentRepository.saveAndFlush(student));
+                .forEach(studentRepository::saveAndFlush);
 
         logger.info("Students successfully seeded");
     }
