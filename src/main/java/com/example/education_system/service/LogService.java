@@ -2,7 +2,7 @@ package com.example.education_system.service;
 
 import java.io.IOException;
 
-public interface StudentService {
+public interface LogService {
 
-    void seedStudents() throws IOException;
+    void seedLogs() throws IOException;
 }
