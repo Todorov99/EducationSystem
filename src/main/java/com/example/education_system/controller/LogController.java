@@ -32,6 +32,6 @@ public class LogController {
     public List<Log> showLogs() throws IOException {
         logService.seedLogs();
 
-        return fileUtil.readXlsxFile("./Logs_Course A_StudentsActivities.xlsx");
+        return null;
     }
 }

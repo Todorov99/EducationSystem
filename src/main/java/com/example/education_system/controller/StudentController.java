@@ -30,6 +30,6 @@ public class StudentController {
     public List<Student> showStudents() throws IOException {
         studentService.seedStudents();
 
-        return fileUtil.readXlsxFile("./Course A_StudentsResults_Year 1.xlsx");
+        return null;
     }
 }

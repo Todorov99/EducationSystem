@@ -23,15 +23,10 @@ public class Student {
     @Column(name = "year")
     private Integer year;
 
-    @ManyToMany()
-    @JoinTable(
-            name = "courses_students",
-            joinColumns = @JoinColumn(name = "course_id"),
-            inverseJoinColumns = @JoinColumn(name = "student_id")
-    )
+    @ManyToMany(mappedBy = "students",cascade = CascadeType.ALL,fetch = FetchType.EAGER)
     private List<Course> courses;
 
-    @OneToMany(mappedBy = "student")
+    @OneToMany(mappedBy = "student",cascade = CascadeType.ALL,fetch = FetchType.EAGER)
     private Set<Log> logs;
 
     public Student() {
