@@ -12,10 +12,16 @@ public class Course {
     @Column(name = "id")
     private Integer id;
 
-    @ManyToMany(mappedBy = "courses")
+
+    @ManyToMany(cascade = CascadeType.ALL,fetch = FetchType.EAGER)
+    @JoinTable(
+            name = "students_courses",
+            joinColumns = @JoinColumn(name = "student_id"),
+            inverseJoinColumns = @JoinColumn(name = "course_id")
+    )
     private List<Student> students;
 
-    @OneToMany(mappedBy = "course")
+    @OneToMany(mappedBy = "course",cascade = CascadeType.ALL,fetch = FetchType.EAGER)
     private Set<Log> logs;
 
     public Course(Integer id, List<Student> students, Set<Log> logs) {
@@ -44,11 +50,11 @@ public class Course {
         this.students = students;
     }
 
-    public Set<Log> getCourses() {
+    public Set<Log> getLogs() {
         return logs;
     }
 
-    public void setCourses(Set<Log> logs) {
+    public void setLogs(Set<Log> logs) {
         this.logs = logs;
     }
 }

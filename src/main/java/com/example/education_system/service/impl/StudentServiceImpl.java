@@ -10,6 +10,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 @Service
@@ -32,14 +34,22 @@ public class StudentServiceImpl implements StudentService {
     @Override
     public void seedStudents() throws IOException {
         logger.info("Seeding students...");
+//
+//        List<Student> students = new ArrayList<>(Arrays.asList(
+//                new Student(1,15),
+//                new Student(2,15),
+//                new Student(3,15),
+//                new Student(4,15),
+//                new Student(5,15)));
 
         List<Student> studentsYearOne = fileUtil.readXlsxFile(studentsYearOneFilePath);
         List<Student> studentsYearTwo = fileUtil.readXlsxFile(studentsYearTwoFilePath);
 
-        studentsYearOne
-                .forEach(studentRepository::saveAndFlush);
-        studentsYearTwo
-                .forEach(studentRepository::saveAndFlush);
+        studentsYearOne.addAll(studentsYearTwo);
+
+//
+
+        studentsYearOne.forEach(studentRepository::saveAndFlush);
 
         logger.info("Students successfully seeded");
     }
