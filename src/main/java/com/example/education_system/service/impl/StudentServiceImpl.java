@@ -1,17 +1,21 @@
 package com.example.education_system.service.impl;
 
 import com.example.education_system.domain.Student;
+import com.example.education_system.dto.StudentDto;
+import com.example.education_system.exception.ObjectNotFoundException;
 import com.example.education_system.repository.StudentRepository;
 import com.example.education_system.service.StudentService;
 import com.example.education_system.util.FileUtil;
+import javassist.NotFoundException;
+import org.modelmapper.ModelMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.client.HttpClientErrorException;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 @Service
@@ -24,11 +28,13 @@ public class StudentServiceImpl implements StudentService {
 
     private final FileUtil fileUtil;
     private final StudentRepository studentRepository;
+    private final ModelMapper modelMapper;
 
     @Autowired
-    public StudentServiceImpl(FileUtil fileUtil, StudentRepository studentRepository) {
+    public StudentServiceImpl(FileUtil fileUtil, StudentRepository studentRepository, ModelMapper modelMapper) {
         this.fileUtil = fileUtil;
         this.studentRepository = studentRepository;
+        this.modelMapper = modelMapper;
     }
 
     @Override
@@ -52,5 +58,25 @@ public class StudentServiceImpl implements StudentService {
         studentsYearOne.forEach(studentRepository::saveAndFlush);
 
         logger.info("Students successfully seeded");
+    }
+
+    @Override
+    public List<StudentDto> getStudentsWithComponent(String component) throws ObjectNotFoundException {
+        logger.info("Getting stydent by component name" + component);
+
+        List<StudentDto> students = new ArrayList<>();
+
+        List<Student> studentsWithComponent = this.studentRepository.getStudentsByComponentName(component);
+
+        for (Student student : studentsWithComponent) {
+            StudentDto studentDto = this.modelMapper.map(student, StudentDto.class);
+            students.add(studentDto);
+        }
+
+        if (students.size() == 0) {
+            throw new com.example.education_system.exception.ObjectNotFoundException("Student with componenet " + component + " not found");
+        }
+
+        return students;
     }
 }
