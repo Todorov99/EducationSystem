@@ -8,7 +8,7 @@ import javax.persistence.Id;
 import java.io.Serializable;
 import java.util.Set;
 
-public class StudentDto implements Serializable {
+public class StudentWithoutRelationDto implements Serializable {
 
     @NonNull
     private Integer id;
@@ -18,9 +18,8 @@ public class StudentDto implements Serializable {
 
     private Integer year;
 
-    private Set<LogDto> logs;
 
-    public StudentDto() {
+    public StudentWithoutRelationDto() {
     }
 
     @NonNull
@@ -48,11 +47,6 @@ public class StudentDto implements Serializable {
         this.year = year;
     }
 
-    public Set<LogDto> getLogs() {
-        return logs;
-    }
 
-    public void setLogs(Set<LogDto> logs) {
-        this.logs = logs;
-    }
 }
+

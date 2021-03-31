@@ -1,9 +1,8 @@
 package com.example.education_system.dto;
 
-import javax.persistence.Column;
-import java.io.Serializable;
+public class LogWithoutRelationDto {
 
-public class LogDto implements Serializable {
+    private Integer id;
 
     private String timestamp;
 
@@ -15,15 +14,15 @@ public class LogDto implements Serializable {
 
     private String description;
 
-    public LogDto() {
+    public LogWithoutRelationDto() {
     }
 
-    public String getComponent() {
-        return component;
+    public Integer getId() {
+        return id;
     }
 
-    public void setComponent(String component) {
-        this.component = component;
+    public void setId(Integer id) {
+        this.id = id;
     }
 
     public String getTimestamp() {
@@ -40,6 +39,14 @@ public class LogDto implements Serializable {
 
     public void setEventContext(String eventContext) {
         this.eventContext = eventContext;
+    }
+
+    public String getComponent() {
+        return component;
+    }
+
+    public void setComponent(String component) {
+        this.component = component;
     }
 
     public String getEventName() {

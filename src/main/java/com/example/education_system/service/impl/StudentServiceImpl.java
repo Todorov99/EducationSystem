@@ -1,22 +1,26 @@
 package com.example.education_system.service.impl;
 
 import com.example.education_system.domain.Student;
-import com.example.education_system.dto.StudentDto;
+import com.example.education_system.dto.LogAllPropertiesDto;
+import com.example.education_system.dto.StudentAllPropertiesDto;
+import com.example.education_system.dto.StudentWithoutRelationDto;
+import com.example.education_system.exception.LogNotFoundException;
 import com.example.education_system.exception.ObjectNotFoundException;
+import com.example.education_system.exception.StudentNotFoundException;
 import com.example.education_system.repository.StudentRepository;
 import com.example.education_system.service.StudentService;
 import com.example.education_system.util.FileUtil;
-import javassist.NotFoundException;
 import org.modelmapper.ModelMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.web.client.HttpClientErrorException;
 
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 @Service
 public class StudentServiceImpl implements StudentService {
@@ -40,20 +44,11 @@ public class StudentServiceImpl implements StudentService {
     @Override
     public void seedStudents() throws IOException {
         logger.info("Seeding students...");
-//
-//        List<Student> students = new ArrayList<>(Arrays.asList(
-//                new Student(1,15),
-//                new Student(2,15),
-//                new Student(3,15),
-//                new Student(4,15),
-//                new Student(5,15)));
 
         List<Student> studentsYearOne = fileUtil.readXlsxFile(studentsYearOneFilePath);
         List<Student> studentsYearTwo = fileUtil.readXlsxFile(studentsYearTwoFilePath);
 
         studentsYearOne.addAll(studentsYearTwo);
-
-//
 
         studentsYearOne.forEach(studentRepository::saveAndFlush);
 
@@ -61,16 +56,16 @@ public class StudentServiceImpl implements StudentService {
     }
 
     @Override
-    public List<StudentDto> getStudentsWithComponent(String component) throws ObjectNotFoundException {
+    public List<StudentWithoutRelationDto> getStudentsWithComponent(String component) throws ObjectNotFoundException {
         logger.info("Getting stydent by component name" + component);
 
-        List<StudentDto> students = new ArrayList<>();
+        List<StudentWithoutRelationDto> students = new ArrayList<>();
 
         List<Student> studentsWithComponent = this.studentRepository.getStudentsByComponentName(component);
 
         for (Student student : studentsWithComponent) {
-            StudentDto studentDto = this.modelMapper.map(student, StudentDto.class);
-            students.add(studentDto);
+            StudentWithoutRelationDto studentWithoutRelationDto = this.modelMapper.map(student, StudentWithoutRelationDto.class);
+            students.add(studentWithoutRelationDto);
         }
 
         if (students.size() == 0) {
@@ -78,5 +73,21 @@ public class StudentServiceImpl implements StudentService {
         }
 
         return students;
+    }
+
+    @Override
+    public Set<StudentAllPropertiesDto> getAllStudents() {
+        return studentRepository
+                .findAll()
+                .stream()
+                .map(log-> modelMapper.map(log, StudentAllPropertiesDto.class))
+                .collect(Collectors.toSet());
+    }
+
+    @Override
+    public StudentAllPropertiesDto getOne(int id) {
+        return modelMapper.map(studentRepository.findById(id).orElseThrow(() -> {
+            throw new StudentNotFoundException("cannot find log with id "+ id);
+        }), StudentAllPropertiesDto.class);
     }
 }
