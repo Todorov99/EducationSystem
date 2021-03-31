@@ -3,11 +3,14 @@ package com.example.education_system.service.impl;
 import com.example.education_system.domain.Course;
 import com.example.education_system.domain.Log;
 import com.example.education_system.domain.Student;
+import com.example.education_system.dto.LogAllPropertiesDto;
+import com.example.education_system.exception.LogNotFoundException;
 import com.example.education_system.repository.CourseRepository;
 import com.example.education_system.repository.LogRepository;
 import com.example.education_system.repository.StudentRepository;
 import com.example.education_system.service.LogService;
 import com.example.education_system.util.FileUtil;
+import org.modelmapper.ModelMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,9 +18,9 @@ import org.springframework.stereotype.Service;
 
 import java.io.IOException;
 import java.util.*;
-import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import java.util.stream.Collectors;
 
 @Service
 public class LogServiceImpl implements LogService {
@@ -29,16 +32,19 @@ public class LogServiceImpl implements LogService {
     private final FileUtil fileUtil;
     private final LogRepository logRepository;
 
-    @Autowired
-    private  StudentRepository studentRepository;
+    private final StudentRepository studentRepository;
+
+    private final CourseRepository courseRepository;
+
+    private final ModelMapper modelMapper;
 
     @Autowired
-    private CourseRepository courseRepository;
-
-    @Autowired
-    public LogServiceImpl(FileUtil fileUtil, LogRepository logRepository) {
+    public LogServiceImpl(FileUtil fileUtil, LogRepository logRepository, StudentRepository studentRepository, CourseRepository courseRepository, ModelMapper modelMapper) {
         this.fileUtil = fileUtil;
         this.logRepository = logRepository;
+        this.studentRepository = studentRepository;
+        this.courseRepository = courseRepository;
+        this.modelMapper = modelMapper;
     }
 
     @Override
@@ -112,5 +118,22 @@ public class LogServiceImpl implements LogService {
 
 
         logger.info("Logs successfully seeded");
+    }
+
+    @Override
+    public Set<LogAllPropertiesDto> getAllLogs() {
+       return logRepository
+               .findAll()
+               .stream()
+               .map(log-> modelMapper.map(log, LogAllPropertiesDto.class))
+               .collect(Collectors.toSet());
+    }
+
+    @Override
+    public LogAllPropertiesDto getOne(int id) {
+       return modelMapper.map(logRepository.findById(id).orElseThrow(() -> {
+            throw new LogNotFoundException("cannot find log with id "+ id);
+        }), LogAllPropertiesDto.class);
+
     }
 }
