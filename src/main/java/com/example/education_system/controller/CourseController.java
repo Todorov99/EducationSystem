@@ -27,7 +27,7 @@ public class CourseController {
         return ResponseEntity.ok(courseService.getAllLogs());
     }
 
-    @GetMapping("/coruses/{id}")
+    @GetMapping("/courses/{id}")
     public ResponseEntity<CourseAllPropertiesDto> getAll(@PathVariable(name = "id")Integer id) {
         return ResponseEntity.ok(courseService.getOne(id));
     }

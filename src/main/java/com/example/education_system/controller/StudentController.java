@@ -28,7 +28,7 @@ public class StudentController {
     }
 
 
-    @PostMapping("/seedStudents")
+    @PostMapping("/students/seed")
     public ResponseEntity<String> showStudents() throws IOException {
         studentService.seedStudents();
         return new ResponseEntity<>("Students successfully seeded", HttpStatus.OK);

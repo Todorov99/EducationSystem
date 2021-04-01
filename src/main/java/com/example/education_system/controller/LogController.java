@@ -24,7 +24,7 @@ public class LogController {
     }
 
 
-    @PostMapping("/seedLogs")
+    @PostMapping("/logs/seed")
     public ResponseEntity<String> showLogs() throws IOException {
         logService.seedLogs();
         return new ResponseEntity<>("Students successfully seeded", HttpStatus.OK);
