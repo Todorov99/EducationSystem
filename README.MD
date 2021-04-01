@@ -33,3 +33,56 @@ docker run --rm -p 5050:5050 thajeztah/pgadmin4
 - For hostName specify your local IP address.
 - Port is that specified in with -p flag of docker run.
 - Password is that specified with POSTGRES_PASSWORD env of docker run.
+
+
+#Api endpoints
+
+##Get
+####Students
+ - `/students` - get all students
+
+- `/students/{id}` - get student by id
+   
+ - `/students/findByComponent` - finds student by component
+
+**Query Params**
+
+|          Name | Required |  Type   | Description                       |
+| -------------:|:--------:|:-------:| -----------------------------------
+|     `componen`| required | string  | The component name of the student | 
+|      `id`     | required | string  | The id of the student
+
+####Logs
+- `/logs` - get all logs
+
+- `/logs/{id}` - get log by id
+
+
+**Query Params**
+
+|          Name | Required |  Type   | Description                       |
+| -------------:|:--------:|:-------:| -----------------------------------
+|      `id`     | required | string  | The id of the log
+
+####Courses
+
+- `/courses` - get all courses
+
+- `/courses/{id}` - get course by id
+
+
+**Query Params**
+
+|          Name | Required |  Type   | Description                       |
+| -------------:|:--------:|:-------:| -----------------------------------
+|      `id`     | required | string  | The id of the course
+
+##Post
+####Students
+
+- `/students/seed` - add students from XLSX file
+
+####Logs 
+
+- `/logs/seed` - add logs from XLSX file
+
