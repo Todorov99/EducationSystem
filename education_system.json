@@ -1,0 +1,383 @@
+{
+	"version": 1,
+	"collections": [
+		{
+			"id": "b2e6f08a-866b-4d38-8e73-f2b438892083",
+			"name": "Education system",
+			"description": "",
+			"auth": null,
+			"events": null,
+			"variables": [],
+			"order": [],
+			"folders_order": [
+				"0b5bd84c-62f6-4d41-8bd6-82baad32914c",
+				"eec6274c-9915-4261-895f-b1c1ceb56c09",
+				"c11da9b7-aca8-4297-a66a-ba2c97807382"
+			],
+			"protocolProfileBehavior": {},
+			"folders": [
+				{
+					"id": "c11da9b7-aca8-4297-a66a-ba2c97807382",
+					"name": "Courses",
+					"description": "",
+					"auth": null,
+					"events": null,
+					"collection": "b2e6f08a-866b-4d38-8e73-f2b438892083",
+					"folder": null,
+					"order": [
+						"960fb03b-2a77-4b67-b94a-a46a6a7aa94a",
+						"f92608aa-ab19-4113-9cf3-7281d012f46d"
+					],
+					"folders_order": [],
+					"protocolProfileBehavior": {},
+					"collectionId": "b2e6f08a-866b-4d38-8e73-f2b438892083",
+					"folderId": "c11da9b7-aca8-4297-a66a-ba2c97807382"
+				},
+				{
+					"id": "eec6274c-9915-4261-895f-b1c1ceb56c09",
+					"name": "Logs",
+					"description": "",
+					"auth": null,
+					"events": null,
+					"collection": "b2e6f08a-866b-4d38-8e73-f2b438892083",
+					"folder": null,
+					"order": [
+						"b5b68b49-3b02-463f-8023-7520d3d1781b",
+						"62b228ca-9ebe-4bf8-8c5f-50ab4aa6dd9e",
+						"288f0ee8-0ccc-4716-a7f9-4b5e627b69c8"
+					],
+					"folders_order": [],
+					"protocolProfileBehavior": {},
+					"collectionId": "b2e6f08a-866b-4d38-8e73-f2b438892083",
+					"folderId": "eec6274c-9915-4261-895f-b1c1ceb56c09"
+				},
+				{
+					"id": "0b5bd84c-62f6-4d41-8bd6-82baad32914c",
+					"name": "Students",
+					"description": "",
+					"auth": null,
+					"events": null,
+					"collection": "b2e6f08a-866b-4d38-8e73-f2b438892083",
+					"folder": null,
+					"order": [
+						"f3217e50-3c0b-4055-b7f7-161aecd3d342",
+						"d3aa7ac8-a9b1-47b9-b56f-2f11e30b1ec4",
+						"20109ad7-1355-482d-ad27-1c939e0e9f8f",
+						"98a25d9f-d65a-4e8c-b151-66358b535f0f"
+					],
+					"folders_order": [],
+					"protocolProfileBehavior": {},
+					"collectionId": "b2e6f08a-866b-4d38-8e73-f2b438892083",
+					"folderId": "0b5bd84c-62f6-4d41-8bd6-82baad32914c"
+				}
+			],
+			"requests": [
+				{
+					"id": "20109ad7-1355-482d-ad27-1c939e0e9f8f",
+					"name": "Find student by component",
+					"url": "http://localhost:9000/findByComponent?component=Wiki",
+					"description": "",
+					"data": null,
+					"dataOptions": null,
+					"dataMode": null,
+					"headerData": [],
+					"method": "GET",
+					"pathVariableData": [],
+					"queryParams": [
+						{
+							"key": "component",
+							"value": "Wiki",
+							"equals": true,
+							"description": null,
+							"enabled": true
+						}
+					],
+					"auth": null,
+					"events": [],
+					"folder": "0b5bd84c-62f6-4d41-8bd6-82baad32914c",
+					"currentHelper": null,
+					"helperAttributes": null,
+					"collectionId": "b2e6f08a-866b-4d38-8e73-f2b438892083",
+					"headers": "",
+					"pathVariables": {}
+				},
+				{
+					"id": "288f0ee8-0ccc-4716-a7f9-4b5e627b69c8",
+					"name": "Get log by id",
+					"url": "http://localhost:9000/logs/15",
+					"description": "",
+					"data": null,
+					"dataOptions": null,
+					"dataMode": null,
+					"headerData": [],
+					"method": "GET",
+					"pathVariableData": [],
+					"queryParams": [],
+					"auth": null,
+					"events": [],
+					"folder": "eec6274c-9915-4261-895f-b1c1ceb56c09",
+					"currentHelper": null,
+					"helperAttributes": null,
+					"collectionId": "b2e6f08a-866b-4d38-8e73-f2b438892083",
+					"headers": "",
+					"pathVariables": {}
+				},
+				{
+					"id": "62b228ca-9ebe-4bf8-8c5f-50ab4aa6dd9e",
+					"name": "Get all logs",
+					"url": "http://localhost:9000/logs",
+					"description": "",
+					"data": null,
+					"dataOptions": null,
+					"dataMode": null,
+					"headerData": [],
+					"method": "GET",
+					"pathVariableData": [],
+					"queryParams": [],
+					"auth": null,
+					"events": [],
+					"folder": "eec6274c-9915-4261-895f-b1c1ceb56c09",
+					"currentHelper": null,
+					"helperAttributes": null,
+					"collectionId": "b2e6f08a-866b-4d38-8e73-f2b438892083",
+					"headers": "",
+					"pathVariables": {}
+				},
+				{
+					"id": "960fb03b-2a77-4b67-b94a-a46a6a7aa94a",
+					"name": "Get course by ID",
+					"url": "http://localhost:9000/courses/130",
+					"description": "",
+					"data": null,
+					"dataOptions": null,
+					"dataMode": null,
+					"headerData": [],
+					"method": "GET",
+					"pathVariableData": [],
+					"queryParams": [],
+					"auth": null,
+					"events": [],
+					"folder": "c11da9b7-aca8-4297-a66a-ba2c97807382",
+					"currentHelper": null,
+					"helperAttributes": null,
+					"collectionId": "b2e6f08a-866b-4d38-8e73-f2b438892083",
+					"headers": "",
+					"pathVariables": {}
+				},
+				{
+					"id": "98a25d9f-d65a-4e8c-b151-66358b535f0f",
+					"name": "Get student by ID",
+					"url": "http://localhost:9000/students/7935",
+					"description": "",
+					"data": null,
+					"dataOptions": null,
+					"dataMode": null,
+					"headerData": [],
+					"method": "GET",
+					"pathVariableData": [],
+					"queryParams": [],
+					"auth": null,
+					"events": [],
+					"folder": "0b5bd84c-62f6-4d41-8bd6-82baad32914c",
+					"currentHelper": null,
+					"helperAttributes": null,
+					"collectionId": "b2e6f08a-866b-4d38-8e73-f2b438892083",
+					"headers": "",
+					"pathVariables": {}
+				},
+				{
+					"id": "b5b68b49-3b02-463f-8023-7520d3d1781b",
+					"name": "Add logs from XLSX file",
+					"url": "http://localhost:9000/logs/seed",
+					"description": "",
+					"data": null,
+					"dataOptions": null,
+					"dataMode": null,
+					"headerData": [],
+					"method": "POST",
+					"pathVariableData": [],
+					"queryParams": [],
+					"auth": null,
+					"events": [],
+					"folder": "eec6274c-9915-4261-895f-b1c1ceb56c09",
+					"currentHelper": null,
+					"helperAttributes": null,
+					"collectionId": "b2e6f08a-866b-4d38-8e73-f2b438892083",
+					"headers": "",
+					"pathVariables": {}
+				},
+				{
+					"id": "d3aa7ac8-a9b1-47b9-b56f-2f11e30b1ec4",
+					"name": "Add student from XLSX file",
+					"url": "http://localhost:9000/students/seed",
+					"description": "",
+					"data": null,
+					"dataOptions": null,
+					"dataMode": null,
+					"headerData": [],
+					"method": "POST",
+					"pathVariableData": [],
+					"queryParams": [],
+					"auth": null,
+					"events": [],
+					"folder": "0b5bd84c-62f6-4d41-8bd6-82baad32914c",
+					"currentHelper": null,
+					"helperAttributes": null,
+					"collectionId": "b2e6f08a-866b-4d38-8e73-f2b438892083",
+					"headers": "",
+					"pathVariables": {}
+				},
+				{
+					"id": "f3217e50-3c0b-4055-b7f7-161aecd3d342",
+					"name": "Get all students",
+					"url": "http://localhost:9000/students",
+					"description": "",
+					"data": null,
+					"dataOptions": null,
+					"dataMode": null,
+					"headerData": [],
+					"method": "GET",
+					"pathVariableData": [],
+					"queryParams": [],
+					"auth": null,
+					"events": [],
+					"folder": "0b5bd84c-62f6-4d41-8bd6-82baad32914c",
+					"currentHelper": null,
+					"helperAttributes": null,
+					"collectionId": "b2e6f08a-866b-4d38-8e73-f2b438892083",
+					"headers": "",
+					"pathVariables": {}
+				},
+				{
+					"id": "f92608aa-ab19-4113-9cf3-7281d012f46d",
+					"name": "Get all courses",
+					"url": "http://localhost:9000/courses",
+					"description": "",
+					"data": null,
+					"dataOptions": null,
+					"dataMode": null,
+					"headerData": [],
+					"method": "GET",
+					"pathVariableData": [],
+					"queryParams": [],
+					"auth": null,
+					"events": [],
+					"folder": "c11da9b7-aca8-4297-a66a-ba2c97807382",
+					"currentHelper": null,
+					"helperAttributes": null,
+					"collectionId": "b2e6f08a-866b-4d38-8e73-f2b438892083",
+					"headers": "",
+					"pathVariables": {}
+				}
+			]
+		}
+	],
+	"environments": [
+		{
+			"id": "08772c22-d87d-40dd-a353-94dd984d7bfb",
+			"name": "My Workspace - globals",
+			"values": []
+		},
+		{
+			"id": "26d87e96-33eb-4c3a-9ab1-37eb82bf4816",
+			"name": "Education system",
+			"values": [
+				{
+					"key": "student_id",
+					"value": "8352\n",
+					"enabled": true
+				},
+				{
+					"key": "course_id",
+					"value": "130",
+					"enabled": true
+				},
+				{
+					"key": "host",
+					"value": "localhost",
+					"enabled": true
+				}
+			]
+		},
+		{
+			"id": "27490d3a-ead3-4c34-831b-75d0960186d7",
+			"name": "My Workspace - globals",
+			"values": []
+		},
+		{
+			"id": "42f675a7-d37f-4697-883f-54b480ca3f54",
+			"name": "Education system",
+			"values": [
+				{
+					"key": "student_id",
+					"value": "8352\n",
+					"enabled": true
+				},
+				{
+					"key": "course_id",
+					"value": "130",
+					"enabled": true
+				},
+				{
+					"key": "host",
+					"value": "localhost",
+					"enabled": true
+				}
+			]
+		},
+		{
+			"id": "71a8886e-22e2-49f6-bfa4-00cea24cedc5",
+			"name": "Education system",
+			"values": [
+				{
+					"key": "student_id",
+					"value": "8352\n",
+					"enabled": true
+				},
+				{
+					"key": "course_id",
+					"value": "130",
+					"enabled": true
+				},
+				{
+					"key": "host",
+					"value": "localhost",
+					"enabled": true
+				}
+			]
+		},
+		{
+			"id": "a83fca22-1c79-4e44-969c-b87fa4f3eb1b",
+			"name": "My Workspace - globals",
+			"values": []
+		},
+		{
+			"id": "c7df5cac-f403-4fa7-81c8-1fbb6b9e7de4",
+			"name": "Education system",
+			"values": [
+				{
+					"key": "student_id",
+					"value": "8352\n",
+					"enabled": true
+				},
+				{
+					"key": "course_id",
+					"value": "130",
+					"enabled": true
+				},
+				{
+					"key": "host",
+					"value": "localhost",
+					"enabled": true
+				}
+			]
+		},
+		{
+			"id": "d789d0c0-c810-4f5c-a812-484ea8c7c60b",
+			"name": "My Workspace - globals",
+			"values": []
+		}
+	],
+	"headerPresets": [],
+	"globals": []
+}
