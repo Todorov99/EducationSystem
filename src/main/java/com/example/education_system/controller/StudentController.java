@@ -29,14 +29,14 @@ public class StudentController {
 
 
     @PostMapping("/students/seed")
-    public ResponseEntity<String> showStudents() throws IOException {
+    public ResponseEntity<String> seedStudents() throws IOException {
         studentService.seedStudents();
-        return new ResponseEntity<>("Students successfully seeded", HttpStatus.OK);
+        return ResponseEntity.ok("Students successfully seeded");
     }
 
     @GetMapping("/students/findByComponent")
-    public ResponseEntity<List<StudentWithoutRelationDto>> getAllStudent(@RequestParam(name = "component") String component) throws ObjectNotFoundException {
-        return new ResponseEntity<>(this.studentService.getStudentsWithComponent(component), HttpStatus.OK);
+    public ResponseEntity<List<StudentWithoutRelationDto>> getAllStudent(@RequestParam(name = "component") String component)  {
+        return ResponseEntity.ok(this.studentService.getStudentsWithComponent(component));
     }
 
     @GetMapping("/students")

@@ -13,7 +13,7 @@ public interface StudentService {
 
     void seedStudents() throws IOException;
 
-    List<StudentWithoutRelationDto> getStudentsWithComponent(String component) throws ObjectNotFoundException;
+    List<StudentWithoutRelationDto> getStudentsWithComponent(String component);
 
     Set<StudentAllPropertiesDto> getAllStudents();
 
