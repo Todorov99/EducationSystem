@@ -5,10 +5,7 @@ import com.example.education_system.service.LogService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.io.IOException;
 import java.util.Set;
@@ -39,5 +36,10 @@ public class LogController {
     @GetMapping("/logs/{id}")
     public ResponseEntity<LogAllPropertiesDto> getAll(@PathVariable(name = "id")Integer id) {
         return ResponseEntity.ok(logService.getOne(id));
+    }
+
+    @GetMapping("/logs/frequency")
+    public ResponseEntity<String> getRelativeFrequency(@RequestParam(name = "component")String component) {
+        return ResponseEntity.ok("Relative frequency is: " + this.logService.getRelativeFrequency(component) + "%");
     }
 }

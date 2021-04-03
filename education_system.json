@@ -44,7 +44,8 @@
 					"order": [
 						"b5b68b49-3b02-463f-8023-7520d3d1781b",
 						"62b228ca-9ebe-4bf8-8c5f-50ab4aa6dd9e",
-						"288f0ee8-0ccc-4716-a7f9-4b5e627b69c8"
+						"288f0ee8-0ccc-4716-a7f9-4b5e627b69c8",
+						"7573f318-ca4b-4b4f-8e8b-9eadcc447a12"
 					],
 					"folders_order": [],
 					"protocolProfileBehavior": {},
@@ -75,7 +76,7 @@
 				{
 					"id": "20109ad7-1355-482d-ad27-1c939e0e9f8f",
 					"name": "Find student by component",
-					"url": "http://localhost:9000/findByComponent?component=Wiki",
+					"url": "http://localhost:9000/students/findByComponent?component=Wik",
 					"description": "",
 					"data": null,
 					"dataOptions": null,
@@ -86,7 +87,7 @@
 					"queryParams": [
 						{
 							"key": "component",
-							"value": "Wiki",
+							"value": "Wik",
 							"equals": true,
 							"description": null,
 							"enabled": true
@@ -134,6 +135,35 @@
 					"method": "GET",
 					"pathVariableData": [],
 					"queryParams": [],
+					"auth": null,
+					"events": [],
+					"folder": "eec6274c-9915-4261-895f-b1c1ceb56c09",
+					"currentHelper": null,
+					"helperAttributes": null,
+					"collectionId": "b2e6f08a-866b-4d38-8e73-f2b438892083",
+					"headers": "",
+					"pathVariables": {}
+				},
+				{
+					"id": "7573f318-ca4b-4b4f-8e8b-9eadcc447a12",
+					"name": "Get relative frequency",
+					"url": "http://localhost:9000/logs/frequency?component=Wiki",
+					"description": "",
+					"data": null,
+					"dataOptions": null,
+					"dataMode": null,
+					"headerData": [],
+					"method": "GET",
+					"pathVariableData": [],
+					"queryParams": [
+						{
+							"key": "component",
+							"value": "Wiki",
+							"equals": true,
+							"description": null,
+							"enabled": true
+						}
+					],
 					"auth": null,
 					"events": [],
 					"folder": "eec6274c-9915-4261-895f-b1c1ceb56c09",
@@ -326,7 +356,80 @@
 			]
 		},
 		{
+			"id": "6ec656aa-17a3-43da-ae13-13280da56c0a",
+			"name": "My Workspace - globals",
+			"values": []
+		},
+		{
 			"id": "71a8886e-22e2-49f6-bfa4-00cea24cedc5",
+			"name": "Education system",
+			"values": [
+				{
+					"key": "student_id",
+					"value": "8352\n",
+					"enabled": true
+				},
+				{
+					"key": "course_id",
+					"value": "130",
+					"enabled": true
+				},
+				{
+					"key": "host",
+					"value": "localhost",
+					"enabled": true
+				}
+			]
+		},
+		{
+			"id": "76b329fc-790e-4312-a159-4067a69559da",
+			"name": "My Workspace - globals",
+			"values": []
+		},
+		{
+			"id": "7a8b4d79-dcdd-42bc-975f-61ca5a795906",
+			"name": "Education system",
+			"values": [
+				{
+					"key": "student_id",
+					"value": "8352\n",
+					"enabled": true
+				},
+				{
+					"key": "course_id",
+					"value": "130",
+					"enabled": true
+				},
+				{
+					"key": "host",
+					"value": "localhost",
+					"enabled": true
+				}
+			]
+		},
+		{
+			"id": "8a3a7372-0661-4884-b9e3-7d5970853558",
+			"name": "Education system",
+			"values": [
+				{
+					"key": "student_id",
+					"value": "8352\n",
+					"enabled": true
+				},
+				{
+					"key": "course_id",
+					"value": "130",
+					"enabled": true
+				},
+				{
+					"key": "host",
+					"value": "localhost",
+					"enabled": true
+				}
+			]
+		},
+		{
+			"id": "8a854b7a-e5d8-4d0c-a7bb-8bfcf1fb17ab",
 			"name": "Education system",
 			"values": [
 				{
@@ -373,7 +476,38 @@
 			]
 		},
 		{
-			"id": "d789d0c0-c810-4f5c-a812-484ea8c7c60b",
+			"id": "cee857ea-3f39-4fde-8069-9702614ef52c",
+			"name": "My Workspace - globals",
+			"values": []
+		},
+		{
+			"id": "d2974af6-d042-45f2-bfaf-dd199a0f40be",
+			"name": "Education system",
+			"values": [
+				{
+					"key": "student_id",
+					"value": "8352\n",
+					"enabled": true
+				},
+				{
+					"key": "course_id",
+					"value": "130",
+					"enabled": true
+				},
+				{
+					"key": "host",
+					"value": "localhost",
+					"enabled": true
+				}
+			]
+		},
+		{
+			"id": "f9f654b2-ccf7-4199-9e09-49e1d0cb91b1",
+			"name": "My Workspace - globals",
+			"values": []
+		},
+		{
+			"id": "a8aa2562-8bf8-4cef-b118-cafbc9d52154",
 			"name": "My Workspace - globals",
 			"values": []
 		}

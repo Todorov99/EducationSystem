@@ -56,7 +56,7 @@ public class StudentServiceImpl implements StudentService {
     }
 
     @Override
-    public List<StudentWithoutRelationDto> getStudentsWithComponent(String component) throws ObjectNotFoundException {
+    public List<StudentWithoutRelationDto> getStudentsWithComponent(String component) {
         logger.info("Getting stydent by component name" + component);
 
         List<StudentWithoutRelationDto> students = new ArrayList<>();
@@ -77,6 +77,8 @@ public class StudentServiceImpl implements StudentService {
 
     @Override
     public Set<StudentAllPropertiesDto> getAllStudents() {
+        logger.info("Getting all students");
+
         return studentRepository
                 .findAll()
                 .stream()
@@ -86,6 +88,8 @@ public class StudentServiceImpl implements StudentService {
 
     @Override
     public StudentAllPropertiesDto getOne(int id) {
+        logger.info("Getting student by id: " + id);
+
         return modelMapper.map(studentRepository.findById(id).orElseThrow(() -> {
             throw new StudentNotFoundException("cannot find log with id "+ id);
         }), StudentAllPropertiesDto.class);

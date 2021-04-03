@@ -47,24 +47,27 @@ docker run --rm -p 5050:5050 thajeztah/pgadmin4
    
  - `/students/findByComponent` - finds student by component
 
-**Query Params**
+**Prams**
 
 |          Name | Required |  Type   | Description                       |
 | -------------:|:--------:|:-------:| -----------------------------------
-|     `componen`| required | string  | The component name of the student | 
-|      `id`     | required | string  | The id of the student
+|     `componen`| required | Query param(string)  | The component name of the student | 
+|      `id`     | required | Path variable(string)  | The id of the student
 
 #### Logs
 - `/logs` - get all logs
 
 - `/logs/{id}` - get log by id
 
+- `/logs/frequency` - get relative frequency between the number of logs by concrete component divided by number of all log record
+
 
 **Query Params**
 
 |          Name | Required |  Type   | Description                       |
 | -------------:|:--------:|:-------:| -----------------------------------
-|      `id`     | required | string  | The id of the log
+|      `id`     | required |  Path variable(string)  | The id of the log
+|     `componen`| required | Query param(string)  | The component name of the log | 
 
 #### Courses
 
@@ -77,7 +80,7 @@ docker run --rm -p 5050:5050 thajeztah/pgadmin4
 
 |          Name | Required |  Type   | Description                       |
 | -------------:|:--------:|:-------:| -----------------------------------
-|      `id`     | required | string  | The id of the course
+|      `id`     | required |  Path variable(string) string  | The id of the course
 
 ## Post
 
