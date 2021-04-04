@@ -1,5 +1,6 @@
 package com.example.education_system.controller;
 
+import com.example.education_system.dto.CentralTendentionDto;
 import com.example.education_system.dto.LogAllPropertiesDto;
 import com.example.education_system.dto.StudentAllPropertiesDto;
 import com.example.education_system.dto.StudentWithoutRelationDto;
@@ -49,4 +50,14 @@ public class StudentController {
         return ResponseEntity.ok(studentService.getOne(id));
     }
 
+    @GetMapping("/students/results/average")
+    public ResponseEntity<String> getAverageOfAllStudentsResults() {
+        return ResponseEntity.ok(String.format("Students average of results: %f", this.studentService.getAverageOfStudentsResults()));
+    }
+
+    @GetMapping("/students/results/centralTendention")
+    public ResponseEntity<List<CentralTendentionDto>> getCentralTendention(@RequestParam(name = "component") String component,
+                                                                           @RequestParam(name = "eventName") String eventName) {
+        return ResponseEntity.ok(this.studentService.getAbsoluteAndRelativeFrequencyOfStudentResult(component, eventName));
+    }
 }

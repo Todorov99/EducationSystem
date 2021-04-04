@@ -1,5 +1,6 @@
 package com.example.education_system.service;
 
+import com.example.education_system.dto.CentralTendentionDto;
 import com.example.education_system.dto.LogAllPropertiesDto;
 import com.example.education_system.dto.StudentAllPropertiesDto;
 import com.example.education_system.dto.StudentWithoutRelationDto;
@@ -18,4 +19,8 @@ public interface StudentService {
     Set<StudentAllPropertiesDto> getAllStudents();
 
     StudentAllPropertiesDto getOne(int id);
+
+    double getAverageOfStudentsResults();
+
+    List<CentralTendentionDto> getAbsoluteAndRelativeFrequencyOfStudentResult(String component, String eventName);
 }

@@ -26,7 +26,7 @@ import java.util.stream.Collectors;
 @Service
 public class LogServiceImpl implements LogService {
 
-    private final static String studentsActivitiesLogFilePath = "./Logs_Course A_StudentsActivities.xlsx";
+    private final static String studentsActivitiesLogFilePath = "./Logs_Course A_StudentsActivities_refactor.xlsx";
 
     private  static final Logger logger = LoggerFactory.getLogger(LogServiceImpl.class);
 
@@ -133,8 +133,4 @@ public class LogServiceImpl implements LogService {
 
     }
 
-    @Override
-    public double getRelativeFrequency(String component) {
-        return logRepository.getCountOfLogsByComponent(component) / logRepository.getCountOfLogs();
-    }
 }
