@@ -12,10 +12,4 @@ import java.util.List;
 public interface LogRepository extends JpaRepository<Log, Integer> {
 
     List<Log> findAllByComponent(String component);
-
-    @Query("select count(l) from Log as l where l.component = :component ")
-    double getCountOfLogsByComponent(@Param(value = "component") String component);
-
-    @Query("select count(l) from Log as l")
-    double getCountOfLogs();
 }

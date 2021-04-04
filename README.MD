@@ -1,6 +1,7 @@
 # Education system
 
 ### Prerequisites
+
  - download and install [Docker desktop](https://www.docker.com/get-started)
 
 ### Start PostgresSQL via docker desktop
@@ -41,33 +42,37 @@ docker run --rm -p 5050:5050 thajeztah/pgadmin4
 
 #### Students
 
- - `/students` - get all students
+##Get
+####Students
+- `/students` - get all students
 
 - `/students/{id}` - get student by id
    
- - `/students/findByComponent` - finds student by component
+- `/students/findByComponent` - finds student by component
+
+- `/students/results/average` - gets the average of all students results
+ 
+- `/students/results/centralTendention` - get the central tendention of all students
+  results by component name and event name
 
 **Prams**
 
 |          Name | Required |  Type   | Description                       |
 | -------------:|:--------:|:-------:| -----------------------------------
-|     `componen`| required | Query param(string)  | The component name of the student | 
 |      `id`     | required | Path variable(string)  | The id of the student
+|     `component`| required | Query param(string)  | The component name of the student log|
+|     `eventName`| required | Query param(string)  | The eventName name of the student log |
 
 #### Logs
 - `/logs` - get all logs
 
 - `/logs/{id}` - get log by id
 
-- `/logs/frequency` - get relative frequency between the number of logs by concrete component divided by number of all log record
-
-
 **Query Params**
 
 |          Name | Required |  Type   | Description                       |
 | -------------:|:--------:|:-------:| -----------------------------------
 |      `id`     | required |  Path variable(string)  | The id of the log
-|     `componen`| required | Query param(string)  | The component name of the log | 
 
 #### Courses
 

@@ -13,5 +13,4 @@ public interface LogService {
 
     LogAllPropertiesDto getOne(int id);
 
-    double getRelativeFrequency(String component);
 }

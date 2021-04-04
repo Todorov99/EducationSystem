@@ -24,9 +24,8 @@ public class LogController {
     @PostMapping("/logs/seed")
     public ResponseEntity<String> showLogs() throws IOException {
         logService.seedLogs();
-        return new ResponseEntity<>("Students successfully seeded", HttpStatus.OK);
+        return new ResponseEntity<>("Logs successfully seeded", HttpStatus.OK);
     }
-
 
     @GetMapping("/logs")
     public ResponseEntity<Set<LogAllPropertiesDto>> getAll() {
@@ -36,10 +35,5 @@ public class LogController {
     @GetMapping("/logs/{id}")
     public ResponseEntity<LogAllPropertiesDto> getAll(@PathVariable(name = "id")Integer id) {
         return ResponseEntity.ok(logService.getOne(id));
-    }
-
-    @GetMapping("/logs/frequency")
-    public ResponseEntity<String> getRelativeFrequency(@RequestParam(name = "component")String component) {
-        return ResponseEntity.ok("Relative frequency is: " + this.logService.getRelativeFrequency(component) + "%");
     }
 }

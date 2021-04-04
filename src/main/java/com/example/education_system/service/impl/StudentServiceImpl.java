@@ -1,6 +1,7 @@
 package com.example.education_system.service.impl;
 
 import com.example.education_system.domain.Student;
+import com.example.education_system.dto.CentralTendentionDto;
 import com.example.education_system.dto.LogAllPropertiesDto;
 import com.example.education_system.dto.StudentAllPropertiesDto;
 import com.example.education_system.dto.StudentWithoutRelationDto;
@@ -94,4 +95,29 @@ public class StudentServiceImpl implements StudentService {
             throw new StudentNotFoundException("cannot find log with id "+ id);
         }), StudentAllPropertiesDto.class);
     }
+
+    @Override
+    public double getAverageOfStudentsResults() {
+        return this.studentRepository.getAverageOfAllResult();
+    }
+
+    @Override
+    public List<CentralTendentionDto> getAbsoluteAndRelativeFrequencyOfStudentResult(String component, String eventName) {
+        logger.info("Getting central tendention");
+
+        List<CentralTendentionDto> centralTendention = new ArrayList<>();
+
+        for (int i =2; i <= 6; i++) {
+            List<Student> studentsWithConcreteResults = this.studentRepository.getStudentsByLogComponentAndEventName((double)i, component, eventName);
+
+            int absoluteFrequency = studentsWithConcreteResults.size();
+            double relativeFrequnecy = studentsWithConcreteResults.size() / this.studentRepository.countStudents();
+            centralTendention.add(new CentralTendentionDto(i, absoluteFrequency, relativeFrequnecy));
+
+        }
+
+        return centralTendention;
+    }
+
+
 }
