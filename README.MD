@@ -36,7 +36,11 @@ docker run --rm -p 5050:5050 thajeztah/pgadmin4
 - Password is that specified with POSTGRES_PASSWORD env of docker run.
 
 
-#Api endpoints
+# Api endpoints
+
+## Get
+
+#### Students
 
 ##Get
 ####Students
@@ -59,7 +63,7 @@ docker run --rm -p 5050:5050 thajeztah/pgadmin4
 |     `component`| required | Query param(string)  | The component name of the student log|
 |     `eventName`| required | Query param(string)  | The eventName name of the student log |
 
-####Logs
+#### Logs
 - `/logs` - get all logs
 
 - `/logs/{id}` - get log by id
@@ -70,7 +74,7 @@ docker run --rm -p 5050:5050 thajeztah/pgadmin4
 | -------------:|:--------:|:-------:| -----------------------------------
 |      `id`     | required |  Path variable(string)  | The id of the log
 
-####Courses
+#### Courses
 
 - `/courses` - get all courses
 
@@ -83,12 +87,13 @@ docker run --rm -p 5050:5050 thajeztah/pgadmin4
 | -------------:|:--------:|:-------:| -----------------------------------
 |      `id`     | required |  Path variable(string) string  | The id of the course
 
-##Post
-####Students
+## Post
+
+#### Students
 
 - `/students/seed` - add students from XLSX file
 
-####Logs 
+#### Logs 
 
 - `/logs/seed` - add logs from XLSX file
 
