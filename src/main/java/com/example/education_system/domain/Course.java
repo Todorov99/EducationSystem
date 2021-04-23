@@ -2,6 +2,7 @@ package com.example.education_system.domain;
 
 import javax.persistence.*;
 import java.util.List;
+import java.util.Objects;
 import java.util.Set;
 
 @Entity
@@ -11,7 +12,6 @@ public class Course {
     @Id
     @Column(name = "id")
     private Integer id;
-
 
     @ManyToMany(cascade = CascadeType.ALL,fetch = FetchType.EAGER)
     @JoinTable(
@@ -56,5 +56,18 @@ public class Course {
 
     public void setLogs(Set<Log> logs) {
         this.logs = logs;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Course course = (Course) o;
+        return id.equals(course.id);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id);
     }
 }

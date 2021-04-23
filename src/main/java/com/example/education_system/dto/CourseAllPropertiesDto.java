@@ -5,6 +5,7 @@ import com.example.education_system.domain.Student;
 
 import javax.persistence.*;
 import java.util.List;
+import java.util.Objects;
 import java.util.Set;
 
 public class CourseAllPropertiesDto {
@@ -42,5 +43,20 @@ public class CourseAllPropertiesDto {
 
     public void setLogs(Set<LogWithoutRelationDto> logs) {
         this.logs = logs;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        CourseAllPropertiesDto that = (CourseAllPropertiesDto) o;
+        return Objects.equals(id, that.id) &&
+                Objects.equals(students, that.students) &&
+                Objects.equals(logs, that.logs);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, students, logs);
     }
 }

@@ -4,6 +4,7 @@ import com.sun.istack.NotNull;
 import org.springframework.lang.NonNull;
 
 import java.util.List;
+import java.util.Objects;
 import java.util.Set;
 
 public class StudentAllPropertiesDto {
@@ -62,5 +63,22 @@ public class StudentAllPropertiesDto {
 
     public void setLogs(Set<LogWithoutRelationDto> logs) {
         this.logs = logs;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        StudentAllPropertiesDto that = (StudentAllPropertiesDto) o;
+        return Double.compare(that.result, result) == 0 &&
+                id.equals(that.id) &&
+                Objects.equals(year, that.year) &&
+                Objects.equals(courses, that.courses) &&
+                Objects.equals(logs, that.logs);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, result, year, courses, logs);
     }
 }
