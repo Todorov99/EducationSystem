@@ -1,9 +1,6 @@
 package com.example.education_system.controller;
 
-import com.example.education_system.dto.CentralTendentionDto;
-import com.example.education_system.dto.LogAllPropertiesDto;
-import com.example.education_system.dto.StudentAllPropertiesDto;
-import com.example.education_system.dto.StudentWithoutRelationDto;
+import com.example.education_system.dto.*;
 import com.example.education_system.service.StudentService;
 import com.example.education_system.util.FileUtil;
 import javassist.tools.rmi.ObjectNotFoundException;
@@ -28,6 +25,11 @@ public class StudentController {
         this.studentService = studentService;
     }
 
+
+    @GetMapping("/students/summary")
+    public ResponseEntity<List<StudentSummaryInfoDto>> getSummarizedStudentInfo(@RequestBody() ResultsDto resultsDto) {
+        return ResponseEntity.ok(this.studentService.getSummaryInfo(resultsDto));
+    }
 
     @PostMapping("/students/seed")
     public ResponseEntity<String> seedStudents() throws IOException {

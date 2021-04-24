@@ -7,6 +7,7 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+import java.util.Set;
 
 @Repository
 public interface StudentRepository extends JpaRepository<Student, Integer> {
@@ -25,4 +26,7 @@ public interface StudentRepository extends JpaRepository<Student, Integer> {
     double countStudents();
 
     List<Student> findAllByResult(double result);
+
+    @Query("select distinct s from Student as s join s.logs as sl where sl.eventName = :eventName and s.result = :result")
+    List<Student> getStudentsByEventNameAndResult(@Param(value = "eventName") String eventName, @Param(value = "result") double result);
 }

@@ -1,9 +1,6 @@
 package com.example.education_system.service;
 
-import com.example.education_system.dto.CentralTendentionDto;
-import com.example.education_system.dto.LogAllPropertiesDto;
-import com.example.education_system.dto.StudentAllPropertiesDto;
-import com.example.education_system.dto.StudentWithoutRelationDto;
+import com.example.education_system.dto.*;
 import javassist.tools.rmi.ObjectNotFoundException;
 
 import java.io.IOException;
@@ -23,4 +20,6 @@ public interface StudentService {
     double getAverageOfStudentsResults();
 
     List<CentralTendentionDto> getAbsoluteAndRelativeFrequencyOfStudentResult(String component, String eventName);
+
+    List<StudentSummaryInfoDto> getSummaryInfo(ResultsDto resultsDto);
 }
