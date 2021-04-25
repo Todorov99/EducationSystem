@@ -4,18 +4,21 @@ import com.example.education_system.domain.Course;
 import com.example.education_system.domain.Log;
 import com.example.education_system.domain.Student;
 import com.example.education_system.dto.*;
+import com.example.education_system.exception.ObjectNotFoundException;
 import com.example.education_system.repository.CourseRepository;
 import com.example.education_system.repository.StudentRepository;
 import com.example.education_system.service.impl.CourseServiceImpl;
 import com.example.education_system.service.impl.StudentServiceImpl;
 import org.junit.Before;
 import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
 import org.junit.runner.RunWith;
 import org.mockito.Mock;
 import org.mockito.junit.MockitoJUnitRunner;
 import org.modelmapper.ModelMapper;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.io.IOException;
 import java.util.*;
 
 import static org.junit.Assert.*;
@@ -112,4 +115,5 @@ public class StudentServiceImplTest {
         assertNotNull(s);
 
     }
+
 }

@@ -1,17 +1,13 @@
-package util.impl;
+package com.example.education_system.util;
 
 import com.example.education_system.domain.Log;
 import com.example.education_system.domain.Student;
 import com.example.education_system.util.impl.FileUtilImpl;
-import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;
-import org.mockito.Mock;
 import org.mockito.junit.MockitoJUnitRunner;
-import org.springframework.boot.test.mock.mockito.MockBean;
-import org.springframework.test.context.event.annotation.BeforeTestMethod;
 
 import java.io.IOException;
 import java.util.ArrayList;
