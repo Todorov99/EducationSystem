@@ -53,7 +53,16 @@ docker run --rm -p 5050:5050 thajeztah/pgadmin4
 - `/students/results/average` - gets the average of all students results
  
 - `/students/results/centralTendention` - get the central tendention of all students
-  results by component name and event name
+
+- `/students/summary` - get summary info about the students activities and their results
+
+###Example Request body:
+```
+{
+"eventName": "Wiki page updated",
+"results": [3, 4]
+}
+```
 
 **Prams**
 

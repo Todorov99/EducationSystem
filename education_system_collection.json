@@ -65,7 +65,8 @@
 						"20109ad7-1355-482d-ad27-1c939e0e9f8f",
 						"98a25d9f-d65a-4e8c-b151-66358b535f0f",
 						"beb23d90-8bc6-4ec3-b93c-20ce47295baa",
-						"388986f2-308e-46ce-a9f3-3e750af9de0a"
+						"388986f2-308e-46ce-a9f3-3e750af9de0a",
+						"db951e09-e7b5-49d8-82ad-17bdead279f7"
 					],
 					"folders_order": [],
 					"protocolProfileBehavior": {},
@@ -283,6 +284,78 @@
 					"currentHelper": null,
 					"helperAttributes": null,
 					"collectionId": "b2e6f08a-866b-4d38-8e73-f2b438892083",
+					"headers": "",
+					"pathVariables": {}
+				},
+				{
+					"id": "db951e09-e7b5-49d8-82ad-17bdead279f7",
+					"name": "Summarize info",
+					"url": "http://localhost:9000/students/summary",
+					"description": "",
+					"data": [],
+					"dataOptions": {
+						"raw": {
+							"language": "json"
+						}
+					},
+					"dataMode": "raw",
+					"headerData": [],
+					"method": "GET",
+					"pathVariableData": [],
+					"queryParams": [
+						{
+							"key": "2",
+							"value": null,
+							"equals": false,
+							"description": null,
+							"enabled": false
+						},
+						{
+							"key": "3",
+							"value": null,
+							"equals": false,
+							"description": null,
+							"enabled": false
+						},
+						{
+							"key": "4",
+							"value": null,
+							"equals": false,
+							"description": null,
+							"enabled": false
+						},
+						{
+							"key": "5",
+							"value": null,
+							"equals": false,
+							"description": null,
+							"enabled": false
+						},
+						{
+							"key": "6",
+							"value": null,
+							"equals": false,
+							"description": null,
+							"enabled": false
+						},
+						{
+							"key": "eventName",
+							"value": null,
+							"equals": false,
+							"description": null,
+							"enabled": false
+						}
+					],
+					"auth": null,
+					"events": [],
+					"folder": "0b5bd84c-62f6-4d41-8bd6-82baad32914c",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"currentHelper": null,
+					"helperAttributes": null,
+					"collectionId": "b2e6f08a-866b-4d38-8e73-f2b438892083",
+					"rawModeData": "{\n    \"eventName\": \"Wiki page updated\",\n    \"results\": [3]\n}",
 					"headers": "",
 					"pathVariables": {}
 				},
@@ -536,7 +609,7 @@
 			"values": []
 		},
 		{
-			"id": "00d73781-fd37-4866-b527-a7aff7f6737f",
+			"id": "95128daf-4ed0-478f-b124-a1d672d961bd",
 			"name": "My Workspace - globals",
 			"values": []
 		}
