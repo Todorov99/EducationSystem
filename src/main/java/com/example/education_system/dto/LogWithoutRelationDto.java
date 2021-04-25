@@ -1,7 +1,6 @@
 package com.example.education_system.dto;
 
 public class LogWithoutRelationDto {
-
     private Integer id;
 
     private String timestamp;
@@ -13,6 +12,7 @@ public class LogWithoutRelationDto {
     private String eventName;
 
     private String description;
+
 
     public LogWithoutRelationDto() {
     }

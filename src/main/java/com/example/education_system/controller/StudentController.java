@@ -1,12 +1,12 @@
 package com.example.education_system.controller;
 
-import com.example.education_system.dto.CentralTendentionDto;
-import com.example.education_system.dto.LogAllPropertiesDto;
-import com.example.education_system.dto.StudentAllPropertiesDto;
-import com.example.education_system.dto.StudentWithoutRelationDto;
+import com.example.education_system.dto.*;
 import com.example.education_system.service.StudentService;
+import com.example.education_system.service.impl.StudentServiceImpl;
 import com.example.education_system.util.FileUtil;
 import javassist.tools.rmi.ObjectNotFoundException;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -19,45 +19,58 @@ import java.util.Set;
 @RestController
 public class StudentController {
 
-    private final FileUtil fileUtil;
+
+    private  static final Logger logger = LoggerFactory.getLogger(StudentController.class);
+
     private final StudentService studentService;
 
     @Autowired
-    public StudentController(FileUtil fileUtil, StudentService studentService) {
-        this.fileUtil = fileUtil;
+    public StudentController(StudentService studentService) {
         this.studentService = studentService;
     }
 
 
+    @GetMapping("/students/summary")
+    public ResponseEntity<List<StudentSummaryInfoDto>> getSummarizedStudentInfo(@RequestBody() ResultsDto resultsDto) {
+        logger.info("Getting summarized Student info.");
+        return ResponseEntity.ok(this.studentService.getSummaryInfo(resultsDto));
+    }
+
     @PostMapping("/students/seed")
     public ResponseEntity<String> seedStudents() throws IOException {
+        logger.info("Seeding students");
         studentService.seedStudents();
         return ResponseEntity.ok("Students successfully seeded");
     }
 
     @GetMapping("/students/findByComponent")
     public ResponseEntity<List<StudentWithoutRelationDto>> getAllStudent(@RequestParam(name = "component") String component)  {
+        logger.info("Getting all students by component");
         return ResponseEntity.ok(this.studentService.getStudentsWithComponent(component));
     }
 
     @GetMapping("/students")
     public ResponseEntity<Set<StudentAllPropertiesDto>> getAll() {
+        logger.info("Getting all students");
         return ResponseEntity.ok(studentService.getAllStudents());
     }
 
     @GetMapping("/students/{id}")
     public ResponseEntity<StudentAllPropertiesDto> getAll(@PathVariable(name = "id")Integer id) {
+        logger.info("Getting all students by id");
         return ResponseEntity.ok(studentService.getOne(id));
     }
 
     @GetMapping("/students/results/average")
     public ResponseEntity<String> getAverageOfAllStudentsResults() {
+        logger.info("Getting average result of students");
         return ResponseEntity.ok(String.format("Students average of results: %f", this.studentService.getAverageOfStudentsResults()));
     }
 
     @GetMapping("/students/results/centralTendention")
     public ResponseEntity<List<CentralTendentionDto>> getCentralTendention(@RequestParam(name = "component") String component,
                                                                            @RequestParam(name = "eventName") String eventName) {
+        logger.info("Getting central tendention");
         return ResponseEntity.ok(this.studentService.getAbsoluteAndRelativeFrequencyOfStudentResult(component, eventName));
     }
 }

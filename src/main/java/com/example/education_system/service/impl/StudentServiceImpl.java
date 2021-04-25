@@ -1,10 +1,7 @@
 package com.example.education_system.service.impl;
 
 import com.example.education_system.domain.Student;
-import com.example.education_system.dto.CentralTendentionDto;
-import com.example.education_system.dto.LogAllPropertiesDto;
-import com.example.education_system.dto.StudentAllPropertiesDto;
-import com.example.education_system.dto.StudentWithoutRelationDto;
+import com.example.education_system.dto.*;
 import com.example.education_system.exception.LogNotFoundException;
 import com.example.education_system.exception.ObjectNotFoundException;
 import com.example.education_system.exception.StudentNotFoundException;
@@ -19,6 +16,7 @@ import org.springframework.stereotype.Service;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -119,5 +117,30 @@ public class StudentServiceImpl implements StudentService {
         return centralTendention;
     }
 
+    @Override
+    public List<StudentSummaryInfoDto> getSummaryInfo(ResultsDto resultsDto) {
+        List<StudentSummaryInfoDto> studentSummaryInfo = new ArrayList<>();
+
+        resultsDto.getResults()
+                .forEach(
+                        studentResult -> {
+                            this.studentRepository.getStudentsByEventNameAndResult(resultsDto.getEventName(), studentResult)
+                                    .forEach(
+                                            student -> {
+                                                studentSummaryInfo.add(
+                                                        this.modelMapper.map(student, StudentSummaryInfoDto.class)
+                                                );
+                                            }
+                                    );
+                        }
+                );
+
+
+        if (studentSummaryInfo.size() == 0) {
+            throw new ObjectNotFoundException("There is not such information found");
+        }
+
+        return studentSummaryInfo;
+    }
 
 }

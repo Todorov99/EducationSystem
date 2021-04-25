@@ -1,6 +1,7 @@
 package com.example.education_system.controller;
 
 import com.example.education_system.dto.LogAllPropertiesDto;
+import com.example.education_system.dto.ResultsDto;
 import com.example.education_system.dto.StudentAllPropertiesDto;
 import com.example.education_system.service.impl.LogServiceImpl;
 import com.example.education_system.service.impl.StudentServiceImpl;
@@ -29,7 +30,7 @@ public class StudentControllerTest {
     @Before
     public void setUp(){
 
-        classUnderTest=new StudentController(null,studentService);
+        classUnderTest=new StudentController(studentService);
     }
 
     @Test
@@ -77,6 +78,16 @@ public class StudentControllerTest {
         Mockito.verify(studentService).getAverageOfStudentsResults();
     }
 
+    @Test
+    public void givenResultDto_whenGetSumarizedStudenInfo_thenInfoIsReturned(){
+        ResultsDto testResultsDto = new ResultsDto();
+
+        doReturn(new ArrayList<>()).when(studentService).getSummaryInfo(testResultsDto);
+
+        classUnderTest.getSummarizedStudentInfo(testResultsDto);
+
+        Mockito.verify(studentService).getSummaryInfo(testResultsDto);
+    }
 
 
 }

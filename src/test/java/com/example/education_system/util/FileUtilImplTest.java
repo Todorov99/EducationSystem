@@ -1,29 +1,32 @@
-package util.impl;
+package com.example.education_system.util;
 
 import com.example.education_system.domain.Log;
 import com.example.education_system.domain.Student;
 import com.example.education_system.util.impl.FileUtilImpl;
-import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.mockito.Mock;
-import org.springframework.boot.test.mock.mockito.MockBean;
-import org.springframework.test.context.event.annotation.BeforeTestMethod;
+import org.junit.runner.RunWith;
+import org.mockito.junit.MockitoJUnitRunner;
 
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
 
+@RunWith(MockitoJUnitRunner.class)
 class FileUtilImplTest {
 
-    private List<Student> expectedStudents = new ArrayList<>();
-    private List<Log> expectedLogs = new ArrayList<>();
-    private FileUtilImpl testFileUtil = new FileUtilImpl();
+    private List<Student> expectedStudents;
+    private List<Log> expectedLogs;
+    private FileUtilImpl testFileUtil;
 
     @BeforeEach()
     void setUp(){
+        testFileUtil = new FileUtilImpl();
+        expectedLogs = new ArrayList<>();
+        expectedStudents = new ArrayList<>();
+
         expectedStudents.add(new Student(7921, 4));
         expectedStudents.add(new Student(7922, 3.5));
         expectedStudents.add(new Student(7938, 6));
@@ -34,7 +37,7 @@ class FileUtilImplTest {
     }
 
     @Test
-   public void shouldReturnValidNotNullListOfStudentWithResultsReadFromXLSFile() throws IOException {
+   public void givenValidFileWithStudentsResults_whenReadXlsxFile_thenReturnNotNullListWithData() throws IOException {
         List<Student> students  = testFileUtil.readXlsxFile("/Users/t.todorov/Documents/Java/testing/EducationSystem/src/test/testData/Test_data_Year 1.xlsx");
 
         Assertions.assertNotNull(students);
@@ -45,7 +48,7 @@ class FileUtilImplTest {
    }
 
     @Test
-    public void shouldReturnValidNotNullListOfLogsReadFromXLSFile() throws IOException {
+    public void givenValidFileWithStudentsActivities_whenReadXlsxFile_thenReturnNotNullListWithData()  throws IOException {
         List<Log> logs  = testFileUtil.readXlsxFile("/Users/t.todorov/Documents/Java/testing/EducationSystem/src/test/testData/Test_file_StudentsActivities.xlsx");
 
         Assertions.assertNotNull(logs);
@@ -59,7 +62,7 @@ class FileUtilImplTest {
     }
 
     @Test
-    public void shouldThrowErrorWhenThereIsNotSuchFile() {
+    public void givenInvalidFile_whenReadXlsxFile_thenThrowIOException() {
     Assertions.assertThrows(IOException.class, () -> {
         testFileUtil.readXlsxFile("invalid.xlsx");
         });

@@ -37,6 +37,12 @@ public class Student {
         this.result = result;
     }
 
+    public Student(Integer id, double result, Set<Log> logs) {
+        this.id = id;
+        this.result = result;
+        this.logs = logs;
+    }
+
     public double getResult() {
         return result;
     }
