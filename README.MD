@@ -56,7 +56,9 @@ docker run --rm -p 5050:5050 thajeztah/pgadmin4
 
 - `/students/summary` - get summary info about the students activities and their results
 
-###Example Request body:
+###Example
+
+Request body:
 ```
 {
 "eventName": "Wiki page updated",
