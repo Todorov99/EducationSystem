@@ -136,6 +136,10 @@ public class StudentServiceImpl implements StudentService {
                 );
 
 
+        if (studentSummaryInfo.size() == 0) {
+            throw new ObjectNotFoundException("There is not such information found");
+        }
+
         return studentSummaryInfo;
     }
 

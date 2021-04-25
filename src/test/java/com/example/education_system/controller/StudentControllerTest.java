@@ -30,7 +30,7 @@ public class StudentControllerTest {
     @Before
     public void setUp(){
 
-        classUnderTest=new StudentController(null,studentService);
+        classUnderTest=new StudentController(studentService);
     }
 
     @Test

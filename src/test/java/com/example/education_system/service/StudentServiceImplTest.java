@@ -3,10 +3,7 @@ package com.example.education_system.service;
 import com.example.education_system.domain.Course;
 import com.example.education_system.domain.Log;
 import com.example.education_system.domain.Student;
-import com.example.education_system.dto.LogAllPropertiesDto;
-import com.example.education_system.dto.ResultsDto;
-import com.example.education_system.dto.StudentAllPropertiesDto;
-import com.example.education_system.dto.StudentSummaryInfoDto;
+import com.example.education_system.dto.*;
 import com.example.education_system.repository.CourseRepository;
 import com.example.education_system.repository.StudentRepository;
 import com.example.education_system.service.impl.CourseServiceImpl;
@@ -75,6 +72,21 @@ public class StudentServiceImplTest {
         double result = classUnderTest.getAverageOfStudentsResults();
 
         assertEquals(5.5,result,0.1);
+    }
+
+    @Test
+    public void givenComponentAndEventName_whenGetAbsoluteAndRelativeFrequencyOfStudentResult_thenReturnListOfCentralTendentionDto(){
+        List<CentralTendentionDto> centralTendentionDtos = new ArrayList<>();
+        centralTendentionDtos.add(new CentralTendentionDto(1, 2, 0.15));
+
+        List<Student> testStudents = new ArrayList<>();
+        testStudents.add(new Student(1, 2));
+
+        doReturn(testStudents).when(studentRepository).getStudentsByLogComponentAndEventName(2.0, "testComponent", "testEventName");
+        doReturn(100.0).when(studentRepository).countStudents();
+
+        centralTendentionDtos = classUnderTest.getAbsoluteAndRelativeFrequencyOfStudentResult("testComponent", "testEventName");
+        assertNotNull(centralTendentionDtos);
     }
 
     @Test
