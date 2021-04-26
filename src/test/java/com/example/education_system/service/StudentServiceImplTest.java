@@ -25,7 +25,7 @@ import static org.junit.Assert.*;
 import static org.mockito.Mockito.doReturn;
 import static org.mockito.Mockito.when;
 
-@RunWith(MockitoJUnitRunner.class)
+@RunWith(MockitoJUnitRunner.Silent.class)
 public class StudentServiceImplTest {
     private StudentServiceImpl classUnderTest;
 
@@ -44,7 +44,6 @@ public class StudentServiceImplTest {
     public void givenListOfStudents_whenGetAllLogsIsCalled_thenListIsReturned(){
 
         List<Student> list  = new ArrayList<>();
-        //String timestamp, String eventContext, String component, String eventName, String description
         list.add(new Student(1,5));
 
         doReturn(list).when(studentRepository).findAll();
@@ -89,7 +88,7 @@ public class StudentServiceImplTest {
         doReturn(100.0).when(studentRepository).countStudents();
 
         centralTendentionDtos = classUnderTest.getAbsoluteAndRelativeFrequencyOfStudentResult("testComponent", "testEventName");
-        assertNotNull(centralTendentionDtos);
+        assertTrue(centralTendentionDtos.size() != 0);
     }
 
     @Test
@@ -112,7 +111,26 @@ public class StudentServiceImplTest {
 
 
         List<StudentSummaryInfoDto> s = classUnderTest.getSummaryInfo(testResultsDto);
-        assertNotNull(s);
+        assertTrue(s.size() != 0);
+
+    }
+
+    @Test
+    public void givenResultDtoWithInvalidInfo_whenGetSummaryInfo_thenReturnError(){
+
+        List<Double> testResults = new ArrayList<>();
+        testResults.add(5.0);
+
+        ResultsDto testResultsDto = new ResultsDto();
+        testResultsDto.setEventName("Testing event name");
+        testResultsDto.setResults(testResults);
+
+        doReturn(new ArrayList<>()).when(studentRepository).getStudentsByEventNameAndResult("invalid", 5);
+
+
+        assertThrows(ObjectNotFoundException.class, () -> {
+           classUnderTest.getSummaryInfo(testResultsDto);
+        });
 
     }
 

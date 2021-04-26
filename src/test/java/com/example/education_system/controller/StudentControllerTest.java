@@ -19,7 +19,7 @@ import java.util.HashSet;
 import static org.mockito.Mockito.doNothing;
 import static org.mockito.Mockito.doReturn;
 
-@RunWith(MockitoJUnitRunner.class)
+@RunWith(MockitoJUnitRunner.Silent.class)
 public class StudentControllerTest {
 
     private StudentController classUnderTest;
@@ -70,6 +70,15 @@ public class StudentControllerTest {
     }
 
     @Test
+    public void givenComponent_whenGetAllStudents_thenListIsreturned() {
+        doReturn(new ArrayList<>()).when(studentService).getStudentsWithComponent("testComponent");
+
+        classUnderTest.getAllStudent("testComponent");
+
+        Mockito.verify(studentService).getStudentsWithComponent("testComponent");
+    }
+
+    @Test
     public void givenList_whenGetAverageIsCalled_thenAverageIsReturend(){
         doReturn(5.5).when(studentService).getAverageOfStudentsResults();
 
@@ -89,5 +98,13 @@ public class StudentControllerTest {
         Mockito.verify(studentService).getSummaryInfo(testResultsDto);
     }
 
+    @Test
+    public void givenComponentAndEventName_whenGetCentralTendetion_thenInfoIsReturned(){
+        doReturn(new ArrayList<>()).when(studentService).getAbsoluteAndRelativeFrequencyOfStudentResult("testComponent", "testEventName");
+
+        classUnderTest.getCentralTendention("testComponent", "testEventName");
+
+        Mockito.verify(studentService).getAbsoluteAndRelativeFrequencyOfStudentResult("testComponent", "testEventName");
+    }
 
 }
