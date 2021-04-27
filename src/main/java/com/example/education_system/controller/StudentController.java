@@ -68,7 +68,7 @@ public class StudentController {
     }
 
     @GetMapping("/students/results/centralTendention")
-    public ResponseEntity<List<CentralTendentionDto>> getCentralTendention(@RequestParam(name = "component") String component,
+    public ResponseEntity<List<CentralTendentionDto>> getAbsoluteAndRelativeFrequency(@RequestParam(name = "component") String component,
                                                                            @RequestParam(name = "eventName") String eventName) {
         logger.info("Getting central tendention");
         return ResponseEntity.ok(this.studentService.getAbsoluteAndRelativeFrequencyOfStudentResult(component, eventName));
