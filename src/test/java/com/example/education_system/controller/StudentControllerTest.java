@@ -102,7 +102,7 @@ public class StudentControllerTest {
     public void givenComponentAndEventName_whenGetCentralTendetion_thenInfoIsReturned(){
         doReturn(new ArrayList<>()).when(studentService).getAbsoluteAndRelativeFrequencyOfStudentResult("testComponent", "testEventName");
 
-        classUnderTest.getCentralTendention("testComponent", "testEventName");
+        classUnderTest.getAbsoluteAndRelativeFrequency("testComponent", "testEventName");
 
         Mockito.verify(studentService).getAbsoluteAndRelativeFrequencyOfStudentResult("testComponent", "testEventName");
     }
