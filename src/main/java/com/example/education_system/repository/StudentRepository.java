@@ -13,7 +13,7 @@ import java.util.Set;
 public interface StudentRepository extends JpaRepository<Student, Integer> {
 
     @Query("select s from Student as s join s.logs as sl where sl.component = :component")
-    List<Student> getStudentsByComponentName(@Param(value = "component") String component);
+   List<Student> getStudentsByComponentName(@Param(value = "component") String component);
 
     @Query("select avg(s.result) from Student as s")
     double getAverageOfAllResult();
@@ -25,7 +25,8 @@ public interface StudentRepository extends JpaRepository<Student, Integer> {
     @Query("select count(s) from Student as s")
     double countStudents();
 
-    List<Student> findAllByResult(double result);
+    @Query("select s from Student as s join s.logs as sl where sl.eventName = :eventName")
+    List<Student> getAllStudentsByEventName(@Param(value = "eventName")String eventName);
 
     @Query("select distinct s from Student as s join s.logs as sl where sl.eventName = :eventName and s.result = :result")
     List<Student> getStudentsByEventNameAndResult(@Param(value = "eventName") String eventName, @Param(value = "result") double result);

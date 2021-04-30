@@ -127,4 +127,53 @@ public class StudentServiceImplTest {
 
     }
 
+    @Test
+    public void givenValidComponent_whenGetStudentsResultsScope_thenReturnMaxAndMinStudentResultDto() {
+        List<Student> listOfStudents  = new ArrayList<>();
+        listOfStudents.add(new Student(1,5));
+        listOfStudents.add(new Student(1,2));
+        listOfStudents.add(new Student(1,3));
+
+        doReturn(listOfStudents).when(studentRepository).getStudentsByComponentName("testComponent");
+
+        MaxAndMinStudentResultDto actualMaxAndMinStudentResultDto = classUnderTest.getStudentsResultsScope("testComponent");
+        assertEquals("testComponent", actualMaxAndMinStudentResultDto.getComponent());
+        assertEquals(2.0, actualMaxAndMinStudentResultDto.getMinResult(), 0.1);
+        assertEquals(5.0, actualMaxAndMinStudentResultDto.getMaxResult(), 0.1);
+        assertEquals(3.0, actualMaxAndMinStudentResultDto.getScope(), 0.1);
+    }
+
+    @Test
+    public void givenInvalidComponent_whenGetStudentsResultsScope_thenReturnError() {
+        List<Student> listOfStudents  = new ArrayList<>();
+        doReturn(listOfStudents).when(studentRepository).getStudentsByComponentName("invalidComponent");
+
+        assertThrows(ObjectNotFoundException.class, () -> {
+            classUnderTest.getStudentsResultsScope("invalidComponent");
+        });
+    }
+
+    @Test
+    public void givenValidEventName_whenGetDispersion_thenReturnResultForDispersion() {
+        List<Student> listOfStudents  = new ArrayList<>();
+        listOfStudents.add(new Student(1,5));
+        listOfStudents.add(new Student(1,2));
+        listOfStudents.add(new Student(1,3));
+
+        doReturn(listOfStudents).when(studentRepository).getAllStudentsByEventName("testEventName");
+
+        double actualResult = classUnderTest.getDispersion("testEventName");
+        assertEquals(3.1622776601683795, actualResult, 0.1);
+    }
+
+    @Test
+    public void givenInvalidEventName_whenGetDispersion_thenReturnError() {
+        List<Student> listOfStudents  = new ArrayList<>();
+
+        doReturn(listOfStudents).when(studentRepository).getAllStudentsByEventName("invalidEventName");
+
+        assertThrows(ObjectNotFoundException.class, () -> {
+            classUnderTest.getDispersion("invalidEventName");
+        });
+    }
 }

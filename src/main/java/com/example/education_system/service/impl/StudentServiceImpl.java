@@ -141,4 +141,62 @@ public class StudentServiceImpl implements StudentService {
         return studentSummaryInfo;
     }
 
+    @Override
+    public MaxAndMinStudentResultDto getStudentsResultsScope(String component) {
+        logger.info("Getting students results scope of min and max result");
+        List<Student> studentsWithComponent = studentRepository.getStudentsByComponentName(component);
+
+
+        if (studentsWithComponent.size() == 0) {
+            throw new ObjectNotFoundException(String.format("There is not any student with component %s", component));
+        }
+
+        MaxAndMinStudentResultDto maxAndMinStudentResultDto = new MaxAndMinStudentResultDto();
+        maxAndMinStudentResultDto.setComponent(component);
+        maxAndMinStudentResultDto.setMinResult(studentsWithComponent.get(0).getResult());
+
+
+        studentsWithComponent
+                .forEach(student -> {
+
+                   if (student.getResult() > maxAndMinStudentResultDto.getMaxResult()){
+                       maxAndMinStudentResultDto.setMaxResult(student.getResult());
+                   }
+
+                    if (student.getResult() < maxAndMinStudentResultDto.getMinResult()){
+                        maxAndMinStudentResultDto.setMinResult(student.getResult());
+                    }
+
+                });
+
+
+        maxAndMinStudentResultDto.setScope(maxAndMinStudentResultDto.getMaxResult() - maxAndMinStudentResultDto.getMinResult());
+        return maxAndMinStudentResultDto;
+    }
+
+    @Override
+    public double getDispersion(String eventName) {
+        logger.info("Getting students results dispersion");
+        List<Student> studentWithEventName = this.studentRepository.getAllStudentsByEventName(eventName);
+        int countOfStudents = studentWithEventName.size();
+
+        if (countOfStudents == 0) {
+            throw new ObjectNotFoundException(String.format("Student with event name %s not found", eventName));
+        }
+
+        double sumOfStudentsResults = 0;
+
+       for (Student student : studentWithEventName) {
+           sumOfStudentsResults += student.getResult();
+       }
+
+        double dispersion = 0;
+
+
+        for (Student student : studentWithEventName) {
+            dispersion += ((student.getResult() - (sumOfStudentsResults/countOfStudents) * (student.getResult() - (sumOfStudentsResults/countOfStudents))) * sumOfStudentsResults) / sumOfStudentsResults;
+        }
+
+        return Math.sqrt(dispersion);
+    }
 }

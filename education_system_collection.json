@@ -66,7 +66,9 @@
 						"98a25d9f-d65a-4e8c-b151-66358b535f0f",
 						"beb23d90-8bc6-4ec3-b93c-20ce47295baa",
 						"388986f2-308e-46ce-a9f3-3e750af9de0a",
-						"db951e09-e7b5-49d8-82ad-17bdead279f7"
+						"db951e09-e7b5-49d8-82ad-17bdead279f7",
+						"c8cd9f72-6503-4cbe-a6da-c66e5dd80229",
+						"c2f61ab2-e358-4668-85a0-e54cde2b1a33"
 					],
 					"folders_order": [],
 					"protocolProfileBehavior": {},
@@ -257,6 +259,64 @@
 					"method": "GET",
 					"pathVariableData": [],
 					"queryParams": [],
+					"auth": null,
+					"events": [],
+					"folder": "0b5bd84c-62f6-4d41-8bd6-82baad32914c",
+					"currentHelper": null,
+					"helperAttributes": null,
+					"collectionId": "b2e6f08a-866b-4d38-8e73-f2b438892083",
+					"headers": "",
+					"pathVariables": {}
+				},
+				{
+					"id": "c2f61ab2-e358-4668-85a0-e54cde2b1a33",
+					"name": "Get dispersion of students results",
+					"url": "http://localhost:9000/students/results/dispersion?eventName=Wiki page update",
+					"description": "",
+					"data": null,
+					"dataOptions": null,
+					"dataMode": null,
+					"headerData": [],
+					"method": "GET",
+					"pathVariableData": [],
+					"queryParams": [
+						{
+							"key": "eventName",
+							"value": "Wiki page update",
+							"equals": true,
+							"description": null,
+							"enabled": true
+						}
+					],
+					"auth": null,
+					"events": [],
+					"folder": "0b5bd84c-62f6-4d41-8bd6-82baad32914c",
+					"currentHelper": null,
+					"helperAttributes": null,
+					"collectionId": "b2e6f08a-866b-4d38-8e73-f2b438892083",
+					"headers": "",
+					"pathVariables": {}
+				},
+				{
+					"id": "c8cd9f72-6503-4cbe-a6da-c66e5dd80229",
+					"name": "Students scope result",
+					"url": "http://localhost:9000/students/results/scope?component=Wiki",
+					"description": "",
+					"data": null,
+					"dataOptions": null,
+					"dataMode": null,
+					"headerData": [],
+					"method": "GET",
+					"pathVariableData": [],
+					"queryParams": [
+						{
+							"key": "component",
+							"value": "Wiki",
+							"equals": true,
+							"description": null,
+							"enabled": true
+						}
+					],
 					"auth": null,
 					"events": [],
 					"folder": "0b5bd84c-62f6-4d41-8bd6-82baad32914c",
@@ -609,7 +669,7 @@
 			"values": []
 		},
 		{
-			"id": "95128daf-4ed0-478f-b124-a1d672d961bd",
+			"id": "0b113fd0-c296-4a7b-a228-81d25b255e85",
 			"name": "My Workspace - globals",
 			"values": []
 		}
