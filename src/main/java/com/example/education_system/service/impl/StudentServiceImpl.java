@@ -2,7 +2,6 @@ package com.example.education_system.service.impl;
 
 import com.example.education_system.domain.Student;
 import com.example.education_system.dto.*;
-import com.example.education_system.exception.LogNotFoundException;
 import com.example.education_system.exception.ObjectNotFoundException;
 import com.example.education_system.exception.StudentNotFoundException;
 import com.example.education_system.repository.StudentRepository;
@@ -16,7 +15,6 @@ import org.springframework.stereotype.Service;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -100,21 +98,21 @@ public class StudentServiceImpl implements StudentService {
     }
 
     @Override
-    public List<CentralTendentionDto> getAbsoluteAndRelativeFrequencyOfStudentResult(String component, String eventName) {
+    public List<AbosoluteAndRelativeFrequencyDto> getAbsoluteAndRelativeFrequencyOfStudentResult(String component, String eventName) {
         logger.info("Getting central tendention");
 
-        List<CentralTendentionDto> centralTendention = new ArrayList<>();
+        List<AbosoluteAndRelativeFrequencyDto> abosoluteAndRelativeFrequency = new ArrayList<>();
 
         for (int i =2; i <= 6; i++) {
             List<Student> studentsWithConcreteResults = this.studentRepository.getStudentsByLogComponentAndEventName((double)i, component, eventName);
 
             int absoluteFrequency = studentsWithConcreteResults.size();
             double relativeFrequnecy = studentsWithConcreteResults.size() / this.studentRepository.countStudents();
-            centralTendention.add(new CentralTendentionDto(i, absoluteFrequency, relativeFrequnecy));
+            abosoluteAndRelativeFrequency.add(new AbosoluteAndRelativeFrequencyDto(i, absoluteFrequency, relativeFrequnecy));
 
         }
 
-        return centralTendention;
+        return abosoluteAndRelativeFrequency;
     }
 
     @Override

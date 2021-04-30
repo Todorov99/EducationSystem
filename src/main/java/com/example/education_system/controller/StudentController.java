@@ -2,13 +2,9 @@ package com.example.education_system.controller;
 
 import com.example.education_system.dto.*;
 import com.example.education_system.service.StudentService;
-import com.example.education_system.service.impl.StudentServiceImpl;
-import com.example.education_system.util.FileUtil;
-import javassist.tools.rmi.ObjectNotFoundException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -68,8 +64,8 @@ public class StudentController {
     }
 
     @GetMapping("/students/results/centralTendention")
-    public ResponseEntity<List<CentralTendentionDto>> getAbsoluteAndRelativeFrequency(@RequestParam(name = "component") String component,
-                                                                           @RequestParam(name = "eventName") String eventName) {
+    public ResponseEntity<List<AbosoluteAndRelativeFrequencyDto>> getAbsoluteAndRelativeFrequency(@RequestParam(name = "component") String component,
+                                                                                                  @RequestParam(name = "eventName") String eventName) {
         logger.info("Getting central tendention");
         return ResponseEntity.ok(this.studentService.getAbsoluteAndRelativeFrequencyOfStudentResult(component, eventName));
     }

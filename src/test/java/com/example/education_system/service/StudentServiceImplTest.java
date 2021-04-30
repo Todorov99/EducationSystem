@@ -1,29 +1,22 @@
 package com.example.education_system.service;
 
-import com.example.education_system.domain.Course;
 import com.example.education_system.domain.Log;
 import com.example.education_system.domain.Student;
 import com.example.education_system.dto.*;
 import com.example.education_system.exception.ObjectNotFoundException;
-import com.example.education_system.repository.CourseRepository;
 import com.example.education_system.repository.StudentRepository;
-import com.example.education_system.service.impl.CourseServiceImpl;
 import com.example.education_system.service.impl.StudentServiceImpl;
 import org.junit.Before;
 import org.junit.Test;
-import org.junit.jupiter.api.Assertions;
 import org.junit.runner.RunWith;
 import org.mockito.Mock;
 import org.mockito.junit.MockitoJUnitRunner;
 import org.modelmapper.ModelMapper;
-import org.springframework.transaction.annotation.Transactional;
 
-import java.io.IOException;
 import java.util.*;
 
 import static org.junit.Assert.*;
 import static org.mockito.Mockito.doReturn;
-import static org.mockito.Mockito.when;
 
 @RunWith(MockitoJUnitRunner.Silent.class)
 public class StudentServiceImplTest {
@@ -78,8 +71,8 @@ public class StudentServiceImplTest {
 
     @Test
     public void givenComponentAndEventName_whenGetAbsoluteAndRelativeFrequencyOfStudentResult_thenReturnListOfCentralTendentionDto(){
-        List<CentralTendentionDto> centralTendentionDtos = new ArrayList<>();
-        centralTendentionDtos.add(new CentralTendentionDto(1, 2, 0.15));
+        List<AbosoluteAndRelativeFrequencyDto> abosoluteAndRelativeFrequencyDtos = new ArrayList<>();
+        abosoluteAndRelativeFrequencyDtos.add(new AbosoluteAndRelativeFrequencyDto(1, 2, 0.15));
 
         List<Student> testStudents = new ArrayList<>();
         testStudents.add(new Student(1, 2));
@@ -87,8 +80,8 @@ public class StudentServiceImplTest {
         doReturn(testStudents).when(studentRepository).getStudentsByLogComponentAndEventName(2.0, "testComponent", "testEventName");
         doReturn(100.0).when(studentRepository).countStudents();
 
-        centralTendentionDtos = classUnderTest.getAbsoluteAndRelativeFrequencyOfStudentResult("testComponent", "testEventName");
-        assertTrue(centralTendentionDtos.size() != 0);
+        abosoluteAndRelativeFrequencyDtos = classUnderTest.getAbsoluteAndRelativeFrequencyOfStudentResult("testComponent", "testEventName");
+        assertTrue(abosoluteAndRelativeFrequencyDtos.size() != 0);
     }
 
     @Test

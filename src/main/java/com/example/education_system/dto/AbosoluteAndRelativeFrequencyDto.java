@@ -1,6 +1,6 @@
 package com.example.education_system.dto;
 
-public class CentralTendentionDto {
+public class AbosoluteAndRelativeFrequencyDto {
 
     int result;
 
@@ -8,10 +8,10 @@ public class CentralTendentionDto {
 
     double relativeFrequency;
 
-    public CentralTendentionDto() {
+    public AbosoluteAndRelativeFrequencyDto() {
     }
 
-    public CentralTendentionDto(int result, int absoluteFrequency, double relativeFrequency) {
+    public AbosoluteAndRelativeFrequencyDto(int result, int absoluteFrequency, double relativeFrequency) {
         this.result = result;
         this.absoluteFrequency = absoluteFrequency;
         this.relativeFrequency = relativeFrequency;
