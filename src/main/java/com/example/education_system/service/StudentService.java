@@ -21,4 +21,8 @@ public interface StudentService {
     List<AbosoluteAndRelativeFrequencyDto> getAbsoluteAndRelativeFrequencyOfStudentResult(String component, String eventName);
 
     List<StudentSummaryInfoDto> getSummaryInfo(ResultsDto resultsDto);
+
+    MaxAndMinStudentResultDto getStudentsResultsScope(String component);
+
+    double getDispersion(String eventName);
 }

@@ -56,6 +56,11 @@ docker run --rm -p 5050:5050 thajeztah/pgadmin4
 
 - `/students/summary` - get summary info about the students activities and their results
 
+- `/students/results/dispersion` - get dispersion of students results
+  
+- `/students/results/scope` - get scope of students results
+
+
 ###Example
 
 Request body:

@@ -69,4 +69,16 @@ public class StudentController {
         logger.info("Getting central tendention");
         return ResponseEntity.ok(this.studentService.getAbsoluteAndRelativeFrequencyOfStudentResult(component, eventName));
     }
+
+    @GetMapping("/students/results/scope")
+    public ResponseEntity<MaxAndMinStudentResultDto> getScopeOfStudentResult(@RequestParam(name = "component") String component) {
+        logger.info("Getting scope of student results");
+        return ResponseEntity.ok(this.studentService.getStudentsResultsScope(component));
+    }
+
+    @GetMapping("/students/results/dispersion")
+    public ResponseEntity<String> getDispersion(@RequestParam(name = "eventName") String eventName) {
+        logger.info("Getting dispersion of student results");
+        return ResponseEntity.ok(String.format("Dispersion of students results is %f", this.studentService.getDispersion(eventName)));
+    }
 }

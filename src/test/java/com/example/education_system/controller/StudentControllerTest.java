@@ -1,6 +1,7 @@
 package com.example.education_system.controller;
 
 import com.example.education_system.dto.LogAllPropertiesDto;
+import com.example.education_system.dto.MaxAndMinStudentResultDto;
 import com.example.education_system.dto.ResultsDto;
 import com.example.education_system.dto.StudentAllPropertiesDto;
 import com.example.education_system.service.impl.LogServiceImpl;
@@ -105,6 +106,22 @@ public class StudentControllerTest {
         classUnderTest.getAbsoluteAndRelativeFrequency("testComponent", "testEventName");
 
         Mockito.verify(studentService).getAbsoluteAndRelativeFrequencyOfStudentResult("testComponent", "testEventName");
+    }
+
+    @Test
+    public void givenComponent_whenGetScopeOfStudentResult_thenReturnScopeInfo() {
+        doReturn(new MaxAndMinStudentResultDto()).when(studentService).getStudentsResultsScope("testComponent");
+
+        classUnderTest.getScopeOfStudentResult("testComponent");
+        Mockito.verify(studentService).getStudentsResultsScope("testComponent");
+    }
+
+    @Test
+    public void givenEventName_whenGetDispersion_thenReturnDispersionInfo() {
+        doReturn(3.5677575775).when(studentService).getDispersion("testEventName");
+
+        classUnderTest.getDispersion("testEventName");
+        Mockito.verify(studentService).getDispersion("testEventName");
     }
 
 }
