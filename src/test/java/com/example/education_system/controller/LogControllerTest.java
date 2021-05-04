@@ -33,19 +33,19 @@ public class LogControllerTest {
     @Test
     public void givenList_whenGetAllIsCalled_thenListIsReturend(){
 
-        doReturn(new HashSet<>()).when(logService).getAllLogs();
+        doReturn(new HashSet<>()).when(logService).getAll();
 
         classUnderTest.getAll();
 
-        Mockito.verify(logService).getAllLogs();
+        Mockito.verify(logService).getAll();
     }
 
     @Test
     public void givenCourse_whenGetOneIsCalled_thenCourseIsReturned(){
-        doReturn(new LogAllPropertiesDto()).when(logService).getOne(1);
+        doReturn(new LogAllPropertiesDto()).when(logService).getLogById(1);
 
         classUnderTest.getAll(1);
 
-        Mockito.verify(logService).getOne(1);
+        Mockito.verify(logService).getLogById(1);
     }
 }

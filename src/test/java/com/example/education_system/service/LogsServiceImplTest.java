@@ -46,12 +46,12 @@ public class LogsServiceImplTest {
     public void givenListOfLogs_whenGetAllLogsIsCalled_thenListIsReturned(){
 
         List<Log> list  = new ArrayList<>();
-        //String timestamp, String eventContext, String component, String eventName, String description
+
         list.add(new Log("timestamp","eventContent","component","eventName","description"));
 
         doReturn(list).when(logRepository).findAll();
 
-        Set<LogAllPropertiesDto> expectedResults =  classUnderTest.getAllLogs();
+        Set<LogAllPropertiesDto> expectedResults =  classUnderTest.getAll();
 
         expectedResults.stream().map(s->modelMapper.map(s,Course.class));
 
@@ -64,7 +64,7 @@ public class LogsServiceImplTest {
 
         doReturn(Optional.of(log)).when(logRepository).findById(1);
 
-        LogAllPropertiesDto result =  classUnderTest.getOne(1);
+        LogAllPropertiesDto result =  classUnderTest.getLogById(1);
 
         assertEquals(result,modelMapper.map(log,LogAllPropertiesDto.class));
     }

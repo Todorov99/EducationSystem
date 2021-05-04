@@ -9,8 +9,8 @@ public interface LogService {
 
     void seedLogs() throws IOException;
 
-    Set<LogAllPropertiesDto> getAllLogs();
+    Set<LogAllPropertiesDto> getAll();
 
-    LogAllPropertiesDto getOne(int id);
+    LogAllPropertiesDto getLogById(int id);
 
 }

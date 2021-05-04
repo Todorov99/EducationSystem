@@ -31,20 +31,20 @@ public class CourseControllerTest {
     @Test
     public void givenList_whenGetAllIsCalled_thenListIsReturend(){
 
-        doReturn(new HashSet<>()).when(courseService).getAllLogs();
+        doReturn(new HashSet<>()).when(courseService).getAll();
 
         classUnderTest.getAll();
 
-        Mockito.verify(courseService).getAllLogs();
+        Mockito.verify(courseService).getAll();
     }
 
     @Test
     public void givenCourse_whenGetOneIsCalled_thenCourseIsReturned(){
-        doReturn(new CourseAllPropertiesDto()).when(courseService).getOne(1);
+        doReturn(new CourseAllPropertiesDto()).when(courseService).getCourseById(1);
 
-        classUnderTest.getAll(1);
+        classUnderTest.getAllById(1);
 
-        Mockito.verify(courseService).getOne(1);
+        Mockito.verify(courseService).getCourseById(1);
     }
 
 

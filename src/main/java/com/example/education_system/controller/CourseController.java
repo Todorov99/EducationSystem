@@ -29,12 +29,12 @@ public class CourseController {
     @GetMapping("/courses")
     public ResponseEntity<Set<CourseAllPropertiesDto>> getAll() {
         logger.info("Getting all courses");
-        return ResponseEntity.ok(courseService.getAllLogs());
+        return ResponseEntity.ok(courseService.getAll());
     }
 
     @GetMapping("/courses/{id}")
-    public ResponseEntity<CourseAllPropertiesDto> getAll(@PathVariable(name = "id")Integer id) {
+    public ResponseEntity<CourseAllPropertiesDto> getAllById(@PathVariable(name = "id")Integer id) {
         logger.info("Getting log by id");
-        return ResponseEntity.ok(courseService.getOne(id));
+        return ResponseEntity.ok(courseService.getCourseById(id));
     }
 }
