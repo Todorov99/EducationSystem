@@ -36,20 +36,20 @@ public class StudentControllerTest {
 
     @Test
     public void givenList_whenGetAllIsCalled_thenListIsReturend(){
-        doReturn(new HashSet<>()).when(studentService).getAllStudents();
+        doReturn(new HashSet<>()).when(studentService).getAll();
 
         classUnderTest.getAll();
 
-        Mockito.verify(studentService).getAllStudents();
+        Mockito.verify(studentService).getAll();
     }
 
     @Test
     public void givenStudent_whenGetOneIsCalled_thenCourseIsReturned(){
-        doReturn(new StudentAllPropertiesDto()).when(studentService).getOne(1);
+        doReturn(new StudentAllPropertiesDto()).when(studentService).getStudentById(1);
 
-        classUnderTest.getAll(1);
+        classUnderTest.getAllById(1);
 
-        Mockito.verify(studentService).getOne(1);
+        Mockito.verify(studentService).getStudentById(1);
     }
 
     @Test
@@ -63,20 +63,20 @@ public class StudentControllerTest {
 
     @Test
     public void givenList_whenFindByComponentIsCalled_thenListIsReturend(){
-        doReturn(new ArrayList<>()).when(studentService).getStudentsWithComponent("component");
+        doReturn(new ArrayList<>()).when(studentService).getStudentByComponent("component");
 
         classUnderTest.getAll();
 
-        Mockito.verify(studentService).getAllStudents();
+        Mockito.verify(studentService).getAll();
     }
 
     @Test
     public void givenComponent_whenGetAllStudents_thenListIsreturned() {
-        doReturn(new ArrayList<>()).when(studentService).getStudentsWithComponent("testComponent");
+        doReturn(new ArrayList<>()).when(studentService).getStudentByComponent("testComponent");
 
-        classUnderTest.getAllStudent("testComponent");
+        classUnderTest.getStudentsByComponent("testComponent");
 
-        Mockito.verify(studentService).getStudentsWithComponent("testComponent");
+        Mockito.verify(studentService).getStudentByComponent("testComponent");
     }
 
     @Test

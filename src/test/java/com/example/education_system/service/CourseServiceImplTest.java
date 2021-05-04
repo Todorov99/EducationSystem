@@ -47,7 +47,7 @@ public class CourseServiceImplTest {
 
         doReturn(list).when(courseRepository).findAll();
 
-        Set<CourseAllPropertiesDto> expectedResults =  classUnderTest.getAllLogs();
+        Set<CourseAllPropertiesDto> expectedResults =  classUnderTest.getAll();
 
         expectedResults.stream().map(s->modelMapper.map(s,Course.class));
 
@@ -63,7 +63,7 @@ public class CourseServiceImplTest {
 
         doReturn(Optional.of(course)).when(courseRepository).findById(1);
 
-       CourseAllPropertiesDto result =  classUnderTest.getOne(1);
+       CourseAllPropertiesDto result =  classUnderTest.getCourseById(1);
 
        assertEquals(result,modelMapper.map(course,CourseAllPropertiesDto.class));
     }

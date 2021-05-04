@@ -34,12 +34,12 @@ public class LogController {
     @GetMapping("/logs")
     public ResponseEntity<Set<LogAllPropertiesDto>> getAll() {
         logger.info("Getting all logs");
-        return ResponseEntity.ok(logService.getAllLogs());
+        return ResponseEntity.ok(logService.getAll());
     }
 
     @GetMapping("/logs/{id}")
     public ResponseEntity<LogAllPropertiesDto> getAll(@PathVariable(name = "id")Integer id) {
         logger.info("Getting log by id");
-        return ResponseEntity.ok(logService.getOne(id));
+        return ResponseEntity.ok(logService.getLogById(id));
     }
 }

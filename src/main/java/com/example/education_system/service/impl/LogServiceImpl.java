@@ -117,7 +117,7 @@ public class LogServiceImpl implements LogService {
     }
 
     @Override
-    public Set<LogAllPropertiesDto> getAllLogs() {
+    public Set<LogAllPropertiesDto> getAll() {
        return logRepository
                .findAll()
                .stream()
@@ -126,7 +126,7 @@ public class LogServiceImpl implements LogService {
     }
 
     @Override
-    public LogAllPropertiesDto getOne(int id) {
+    public LogAllPropertiesDto getLogById(int id) {
        return modelMapper.map(logRepository.findById(id).orElseThrow(() -> {
             throw new LogNotFoundException("cannot find log with id "+ id);
         }), LogAllPropertiesDto.class);

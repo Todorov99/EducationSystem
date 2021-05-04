@@ -7,7 +7,7 @@ import java.util.Set;
 
 public interface CourseService {
 
-    Set<CourseAllPropertiesDto> getAllLogs();
+    Set<CourseAllPropertiesDto> getAll();
 
-    CourseAllPropertiesDto getOne(int id);
+    CourseAllPropertiesDto getCourseById(int id);
 }

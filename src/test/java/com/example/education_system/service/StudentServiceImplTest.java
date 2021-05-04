@@ -41,7 +41,7 @@ public class StudentServiceImplTest {
 
         doReturn(list).when(studentRepository).findAll();
 
-        Set<StudentAllPropertiesDto> expectedResults =  classUnderTest.getAllStudents();
+        Set<StudentAllPropertiesDto> expectedResults =  classUnderTest.getAll();
 
         expectedResults.stream().map(s->modelMapper.map(s, Student.class));
 
@@ -54,7 +54,7 @@ public class StudentServiceImplTest {
 
         doReturn(Optional.of(student)).when(studentRepository).findById(1);
 
-        StudentAllPropertiesDto result =  classUnderTest.getOne(1);
+        StudentAllPropertiesDto result =  classUnderTest.getStudentById(1);
 
         assertEquals(result,modelMapper.map(student,StudentAllPropertiesDto.class));
     }

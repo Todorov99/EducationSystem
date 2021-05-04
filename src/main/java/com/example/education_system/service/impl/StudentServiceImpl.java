@@ -53,7 +53,7 @@ public class StudentServiceImpl implements StudentService {
     }
 
     @Override
-    public List<StudentWithoutRelationDto> getStudentsWithComponent(String component) {
+    public List<StudentWithoutRelationDto> getStudentByComponent(String component) {
         logger.info("Getting stydent by component name" + component);
 
         List<StudentWithoutRelationDto> students = new ArrayList<>();
@@ -73,7 +73,7 @@ public class StudentServiceImpl implements StudentService {
     }
 
     @Override
-    public Set<StudentAllPropertiesDto> getAllStudents() {
+    public Set<StudentAllPropertiesDto> getAll() {
         logger.info("Getting all students");
 
         return studentRepository
@@ -84,11 +84,11 @@ public class StudentServiceImpl implements StudentService {
     }
 
     @Override
-    public StudentAllPropertiesDto getOne(int id) {
+    public StudentAllPropertiesDto getStudentById(int id) {
         logger.info("Getting student by id: " + id);
 
         return modelMapper.map(studentRepository.findById(id).orElseThrow(() -> {
-            throw new StudentNotFoundException("cannot find log with id "+ id);
+            throw new StudentNotFoundException("cannot find student with id "+ id);
         }), StudentAllPropertiesDto.class);
     }
 

@@ -10,11 +10,11 @@ public interface StudentService {
 
     void seedStudents() throws IOException;
 
-    List<StudentWithoutRelationDto> getStudentsWithComponent(String component);
+    List<StudentWithoutRelationDto> getStudentByComponent(String component);
 
-    Set<StudentAllPropertiesDto> getAllStudents();
+    Set<StudentAllPropertiesDto> getAll();
 
-    StudentAllPropertiesDto getOne(int id);
+    StudentAllPropertiesDto getStudentById(int id);
 
     double getAverageOfStudentsResults();
 

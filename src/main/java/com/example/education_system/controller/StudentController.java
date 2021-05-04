@@ -40,21 +40,21 @@ public class StudentController {
     }
 
     @GetMapping("/students/findByComponent")
-    public ResponseEntity<List<StudentWithoutRelationDto>> getAllStudent(@RequestParam(name = "component") String component)  {
+    public ResponseEntity<List<StudentWithoutRelationDto>> getStudentsByComponent(@RequestParam(name = "component") String component)  {
         logger.info("Getting all students by component");
-        return ResponseEntity.ok(this.studentService.getStudentsWithComponent(component));
+        return ResponseEntity.ok(this.studentService.getStudentByComponent(component));
     }
 
     @GetMapping("/students")
     public ResponseEntity<Set<StudentAllPropertiesDto>> getAll() {
         logger.info("Getting all students");
-        return ResponseEntity.ok(studentService.getAllStudents());
+        return ResponseEntity.ok(studentService.getAll());
     }
 
     @GetMapping("/students/{id}")
-    public ResponseEntity<StudentAllPropertiesDto> getAll(@PathVariable(name = "id")Integer id) {
+    public ResponseEntity<StudentAllPropertiesDto> getAllById(@PathVariable(name = "id")Integer id) {
         logger.info("Getting all students by id");
-        return ResponseEntity.ok(studentService.getOne(id));
+        return ResponseEntity.ok(studentService.getStudentById(id));
     }
 
     @GetMapping("/students/results/average")

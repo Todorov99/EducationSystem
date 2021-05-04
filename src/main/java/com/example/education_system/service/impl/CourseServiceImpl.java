@@ -26,7 +26,7 @@ public class CourseServiceImpl implements CourseService {
     }
 
     @Override
-    public Set<CourseAllPropertiesDto> getAllLogs() {
+    public Set<CourseAllPropertiesDto> getAll() {
         return courseRepository
                 .findAll()
                 .stream()
@@ -35,7 +35,7 @@ public class CourseServiceImpl implements CourseService {
     }
 
     @Override
-    public CourseAllPropertiesDto getOne(int id) {
+    public CourseAllPropertiesDto getCourseById(int id) {
 
         return modelMapper.map(courseRepository.findById(id).orElseThrow(() -> {
             throw new CourseNotFoundException("cannot find log with id " + id);
