@@ -25,4 +25,8 @@ public interface StudentService {
     MaxAndMinStudentResultDto getStudentsResultsScope(String component);
 
     double getDispersion(String eventName);
+
+    double getStandardDeviation();
+
+    double getCorrelationAnalysis(String component);
 }

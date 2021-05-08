@@ -5,6 +5,7 @@ import com.example.education_system.controller.LogController;
 import com.example.education_system.controller.StudentController;
 import com.example.education_system.dto.CustomError;
 import com.example.education_system.exception.LogNotFoundException;
+import com.example.education_system.exception.NoStudentsForStandardDeviationException;
 import com.example.education_system.exception.ObjectNotFoundException;
 import com.example.education_system.exception.StudentNotFoundException;
 import org.springframework.http.HttpStatus;
@@ -30,5 +31,10 @@ public class StudentControllerExceptionHandler {
         return new ResponseEntity<>(
                 new CustomError(LocalDateTime.now(), HttpStatus.NOT_FOUND.value(), e.getMessage()),
                 HttpStatus.NOT_FOUND);
+    }
+
+    @ExceptionHandler(NoStudentsForStandardDeviationException.class)
+    public ResponseEntity<CustomError> handleNoStudentsForStandardDeviationException(NoStudentsForStandardDeviationException e ){
+        return new ResponseEntity<>(new CustomError(LocalDateTime.now(),HttpStatus.BAD_REQUEST.value(),e.getMessage()),HttpStatus.BAD_REQUEST);
     }
 }

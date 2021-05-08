@@ -81,4 +81,20 @@ public class StudentController {
         logger.info("Getting dispersion of student results");
         return ResponseEntity.ok(String.format("Dispersion of students results is %f", this.studentService.getDispersion(eventName)));
     }
+
+    @GetMapping("/students/results/standardDeviation")
+    public ResponseEntity<Double> getStandardDeviation(){
+        logger.info("Getting standard deviation");
+
+        return ResponseEntity.ok(studentService.getStandardDeviation());
+    }
+
+    @GetMapping("/students/results/correlationAnalysis")
+    public ResponseEntity<Double> getCorrelationAnalysis(@RequestParam(name = "component") String component){
+        logger.info("Getting correlation analysis");
+
+        return ResponseEntity.ok(studentService.getCorrelationAnalysis(component));
+    }
+
+
 }

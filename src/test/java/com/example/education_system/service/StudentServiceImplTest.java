@@ -3,6 +3,7 @@ package com.example.education_system.service;
 import com.example.education_system.domain.Log;
 import com.example.education_system.domain.Student;
 import com.example.education_system.dto.*;
+import com.example.education_system.exception.NoStudentsForStandardDeviationException;
 import com.example.education_system.exception.ObjectNotFoundException;
 import com.example.education_system.repository.StudentRepository;
 import com.example.education_system.service.impl.StudentServiceImpl;
@@ -10,8 +11,12 @@ import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.Mock;
+import org.mockito.Mockito;
 import org.mockito.junit.MockitoJUnitRunner;
 import org.modelmapper.ModelMapper;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.*;
 
@@ -165,6 +170,60 @@ public class StudentServiceImplTest {
         double actualResult = classUnderTest.getDispersion("testEventName");
         assertEquals(3.1622776601683795, actualResult, 0.1);
     }
+
+    @Test
+    public void givenListOfStudent_whenGetStandardDeviation_thenReturnCorrectDeviation(){
+        List<Student> listOfStudents  = new ArrayList<>();
+        listOfStudents.add(new Student(1,5));
+        listOfStudents.add(new Student(1,2));
+        listOfStudents.add(new Student(1,3));
+
+        doReturn(listOfStudents).when(studentRepository).findAll();
+
+        double result = classUnderTest.getStandardDeviation();
+
+
+        assertEquals(1.247219128924647, result,0.001);
+    }
+
+    @Test(expected = NoStudentsForStandardDeviationException.class)
+    public void givenEmptyListOfStudent_whenGetStandardDeviation_thenReturnCorrectDeviation(){
+        List<Student> listOfStudents  = new ArrayList<>();
+
+        doReturn(listOfStudents).when(studentRepository).findAll();
+
+        classUnderTest.getStandardDeviation();
+    }
+
+
+//    @Override
+//    public double getStandardDeviation() {
+//
+////        Стъпка 1: Намери средната стойност.
+////        Стъпка 2: За всяка стойност, намери квадрата от разликата между конкретната стойност от набора данни и средната стойност.
+////        Стъпка 3: Събери стойностите от стъпка 2.
+////        Стъпка 4: Раздели на броя на стойностите от набора данни.
+////        Стъпка 5: Изчисли корен квадратен от получената сума.
+//
+//        List<Student> students = studentRepository.findAll();
+//
+//        if(students.size()==0){
+//            throw new NoStudentsForStandardDeviationException("Cannot calculate standard deviation");
+//        }
+//
+//        double average  = students.stream().mapToDouble(Student::getResult).average().orElse(0.0);
+//
+//        double sum = 0.0;
+//
+//        for (Student s: students) {
+//            double step2 = s.getResult() - average;
+//            double result = Math.pow(step2,2);
+//            sum+=result;
+//        }
+//        sum = sum/students.size();
+//
+//        return Math.
+
 
     @Test
     public void givenInvalidEventName_whenGetDispersion_thenReturnError() {

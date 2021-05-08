@@ -2,6 +2,7 @@ package com.example.education_system.service.impl;
 
 import com.example.education_system.domain.Student;
 import com.example.education_system.dto.*;
+import com.example.education_system.exception.NoStudentsForStandardDeviationException;
 import com.example.education_system.exception.ObjectNotFoundException;
 import com.example.education_system.exception.StudentNotFoundException;
 import com.example.education_system.repository.StudentRepository;
@@ -198,5 +199,60 @@ public class StudentServiceImpl implements StudentService {
         }
 
         return Math.sqrt(dispersion);
+    }
+
+
+    @Override
+    public double getStandardDeviation() {
+
+//        Стъпка 1: Намери средната стойност.
+//        Стъпка 2: За всяка стойност, намери квадрата от разликата между конкретната стойност от набора данни и средната стойност.
+//        Стъпка 3: Събери стойностите от стъпка 2.
+//        Стъпка 4: Раздели на броя на стойностите от набора данни.
+//        Стъпка 5: Изчисли корен квадратен от получената сума.
+
+        List<Student> students = studentRepository.findAll();
+
+        if(students.size()==0){
+            throw new NoStudentsForStandardDeviationException("Cannot calculate standard deviation");
+        }
+
+        double average  = students.stream().mapToDouble(Student::getResult).average().orElse(0.0);
+
+        double sum = 0.0;
+
+        for (Student s: students) {
+            double step2 = s.getResult() - average;
+            double result = Math.pow(step2,2);
+            sum+=result;
+        }
+        sum = sum/students.size();
+
+        return Math.sqrt(sum);
+    }
+
+    @Override
+    public double getCorrelationAnalysis(String component) {
+
+        List<AbosoluteAndRelativeFrequencyDto> absoluteAndRelativeFrequency =  getAbsoluteAndRelativeFrequencyOfStudentResult(component,"_");
+
+        List<StudentWithoutRelationDto> students = getStudentByComponent(component);
+
+        double sumOfStudentsResults = students.stream().mapToDouble(StudentWithoutRelationDto::getResult).sum();
+
+        int sumOfAbsoluteAndRelativeFrequency = absoluteAndRelativeFrequency.stream().mapToInt(AbosoluteAndRelativeFrequencyDto::getResult).sum();
+
+        double formula = students.size()*sumOfStudentsResults - sumOfAbsoluteAndRelativeFrequency*sumOfStudentsResults;
+
+        formula = formula/Math.sqrt(
+                (students.size() - sumOfStudentsResults)
+                        *
+                (students.size() * (students.stream().mapToDouble(s->Math.sqrt(s.getResult())).sum())
+                        - Math.sqrt(sumOfAbsoluteAndRelativeFrequency))
+        );
+
+
+        return formula;
+
     }
 }
